@@ -12,10 +12,14 @@
 
 //* if wanted to take step further, add in crypto wallet and smart contracts so users can actually put friendly wages on and automatically gets transacted
 
-// * typescript/react/JWT/axios/
-
 //* database use MongoDB because not relational, just adding running data and then comparing to others
 
-//* Mongoose as the ODM or try find another good NOSQL database/ODM
+function App() {
+  return (
+    <div>
+      <h1>Runners</h1>
+    </div>
+  );
+}
 
-//* just use express as not much info to get
+export default App;

@@ -1,0 +1,20 @@
+{
+  "name": "runners",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheBigBookMan/Runners.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheBigBookMan/Runners/issues"
+  },
+  "homepage": "https://github.com/TheBigBookMan/Runners#readme"
+}
