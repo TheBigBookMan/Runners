@@ -1,4 +1,14 @@
+import NavBar from "./assets/components/common/NavBar";
+import Home from "./assets/pages/Home";
+import Groups from "./assets/pages/Groups";
+import Solo from "./assets/pages/Solo";
+import Settings from "./assets/pages/Settings";
+import Login from "./assets/pages/Login";
+import Signup from "./assets/pages/Signup";
+import { Routes, Route } from "react-router-dom";
+
 // * running application where import strava data on runs
+// https://developers.strava.com/docs/reference/
 
 //* have user login and have friends
 
@@ -17,7 +27,15 @@
 function App() {
   return (
     <div>
-      <h1>Runners</h1>
+      <NavBar />
+      <Routes>
+        <Route index path="/" element={<Home />} />
+        <Route path="groups" element={<Groups />} />
+        <Route path="solo" element={<Solo />} />
+        <Route path="settings" element={<Settings />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+      </Routes>
     </div>
   );
 }
