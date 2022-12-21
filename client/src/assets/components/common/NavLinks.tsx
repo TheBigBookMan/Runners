@@ -11,7 +11,7 @@ const NavLinks = () => {
       <Link to="/settings">Settings</Link>
 
       {isIn ? (
-        <li>Logout</li>
+        <p>Logout</p>
       ) : (
         <>
           <Link to="/login">Login</Link>

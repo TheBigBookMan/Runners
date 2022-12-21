@@ -14,20 +14,20 @@ const Navigation = () => {
         onClick={(): void => (navOpen ? setNavOpen(false) : setNavOpen(true))}
       >
         <span
-          className={`w-8 h-1 bg-orange-400 group-hover:bg-orange-600 duration-700 ${
+          className={`w-8 h-1 bg-orange-400 group-hover:bg-orange-600 transition-all ${
             navOpen &&
-            "bg-orange-600 origin-top-left rotate-45 group-hover:bg-orange-400"
+            "bg-orange-600 origin-top-left rotate-45 group-hover:bg-orange-400 duration-700"
           } `}
         ></span>
         <span
-          className={`w-4 h-1 bg-orange-400 group-hover:bg-orange-600 duration-700 ${
-            navOpen && "opacity-0 rotate-45"
+          className={`w-4 h-1 bg-orange-400 group-hover:bg-orange-600 transition-all ${
+            navOpen && "opacity-0 rotate-45 duration-700"
           } `}
         ></span>
         <span
-          className={`w-8 h-1 bg-orange-400 group-hover:bg-orange-600 duration-700 ${
+          className={`w-8 h-1 bg-orange-400 group-hover:bg-orange-600 transition-all ${
             navOpen &&
-            "bg-orange-600 origin-bottom-right rotate-45 group-hover:bg-orange-400"
+            "bg-orange-600 origin-bottom-right rotate-45 group-hover:bg-orange-400 duration-700"
           } `}
         ></span>
       </div>
