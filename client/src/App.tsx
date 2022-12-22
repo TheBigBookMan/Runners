@@ -26,7 +26,7 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <div className="h-screen w-full ">
       <NavBar />
       <Routes>
         <Route index path="/" element={<Home />} />

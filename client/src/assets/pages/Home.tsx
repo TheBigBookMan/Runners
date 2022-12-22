@@ -3,14 +3,14 @@ import SoloStats from "../components/feature/homePage/SoloStats";
 
 const Home = () => {
   return (
-    <div className="flex flex-col p-2">
+    <div className="flex flex-col p-2 h-full gap-7">
       <p className="text-sm">
-        Create an account and then you will be able to join a running group.
-        Once you have joined a group with your friends you will be able to
-        compare Strava runs and see who has ran the most this week. Get running!
+        Create an account and then you will be able to join a friend group. Once
+        you have joined a group with your friends you will be able to compare
+        Strava activities and see who has done the most this week. Get moving!
       </p>
-      <GroupStats />
       <SoloStats />
+      <GroupStats />
     </div>
   );
 };
