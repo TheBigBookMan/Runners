@@ -1,21 +1,34 @@
 import { Link } from "react-router-dom";
 
-const NavLinks = () => {
+//! FIX ANY TYPE
+const NavLinks = ({ setNavOpen }: any) => {
   // ? temporary login
   const isIn = false;
   return (
     <>
-      <Link to="/">Home</Link>
-      <Link to="/groups">Groups</Link>
-      <Link to="/solo">Solo</Link>
-      <Link to="/settings">Settings</Link>
+      <Link onClick={() => setNavOpen(false)} to="/">
+        Home
+      </Link>
+      <Link onClick={() => setNavOpen(false)} to="/groups">
+        Groups
+      </Link>
+      <Link onClick={() => setNavOpen(false)} to="/solo">
+        Solo
+      </Link>
+      <Link onClick={() => setNavOpen(false)} to="/settings">
+        Settings
+      </Link>
 
       {isIn ? (
         <p>Logout</p>
       ) : (
         <>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Signup</Link>
+          <Link onClick={() => setNavOpen(false)} to="/login">
+            Login
+          </Link>
+          <Link onClick={() => setNavOpen(false)} to="/signup">
+            Signup
+          </Link>
         </>
       )}
     </>

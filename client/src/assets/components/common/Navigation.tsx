@@ -7,7 +7,7 @@ const Navigation = () => {
   return (
     <div className="relative">
       <ul className="hidden md:flex gap-5 text-sm">
-        <NavLinks />
+        <NavLinks setNavOpen={setNavOpen} />
       </ul>
       <div
         className="md:hidden flex flex-col gap-1 absolute -top-2 right-8 group hover:cursor-pointer"
@@ -33,7 +33,7 @@ const Navigation = () => {
       </div>
       {navOpen && (
         <div className="absolute bg-orange-100 w-[140px] h-[200px] -right-6 top-7 flex flex-col gap-2 p-2">
-          <NavLinks />
+          <NavLinks setNavOpen={setNavOpen} />
         </div>
       )}
     </div>
