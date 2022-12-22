@@ -2,6 +2,7 @@ import NavBar from "./assets/components/common/NavBar";
 import Home from "./assets/pages/Home";
 import Groups from "./assets/pages/Groups";
 import Solo from "./assets/pages/Solo";
+import Profile from "./assets/pages/Profile";
 import Settings from "./assets/pages/Settings";
 import Login from "./assets/pages/Login";
 import Signup from "./assets/pages/Signup";
@@ -32,6 +33,7 @@ function App() {
         <Route index path="/" element={<Home />} />
         <Route path="groups" element={<Groups />} />
         <Route path="solo" element={<Solo />} />
+        <Route path="profile" element={<Profile />} />
         <Route path="settings" element={<Settings />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />

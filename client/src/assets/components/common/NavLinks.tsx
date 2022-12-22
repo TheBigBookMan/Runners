@@ -15,6 +15,9 @@ const NavLinks = ({ setNavOpen }: any) => {
       <Link onClick={() => setNavOpen(false)} to="/solo">
         Solo
       </Link>
+      <Link onClick={() => setNavOpen(false)} to="/profile">
+        Profile
+      </Link>
       <Link onClick={() => setNavOpen(false)} to="/settings">
         Settings
       </Link>
