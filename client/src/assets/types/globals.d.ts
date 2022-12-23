@@ -10,4 +10,10 @@ declare global {
     bike: string;
     swim: string;
   }
+
+  interface FormDetails {
+    username: string;
+    email: string;
+    password: string;
+  }
 }
