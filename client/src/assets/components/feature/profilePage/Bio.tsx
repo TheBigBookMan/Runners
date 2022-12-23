@@ -1,4 +1,36 @@
 import Me from "../../../images/Me.jpg";
+import { Link } from "react-router-dom";
+
+const hardcode = [
+  {
+    app: "Strava",
+    color: "orange",
+    activity: "run",
+    distance: 10,
+    time: 34,
+  },
+  {
+    app: "Nike Fit Club",
+    color: "green",
+    activity: "swim",
+    distance: 4,
+    time: 84,
+  },
+  {
+    app: "Map My Run",
+    color: "teal",
+    activity: "walk",
+    distance: 20,
+    time: 314,
+  },
+  {
+    app: "Strava",
+    color: "orange",
+    activity: "bike",
+    distance: 100,
+    time: 134,
+  },
+];
 
 const Bio = () => {
   return (
@@ -14,49 +46,27 @@ const Bio = () => {
           <p className="italic">walker, runner, swimmer</p>
         </div>
       </div>
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full overflow-y-scroll">
         <h1 className="font-bold text-orange-600">Recent posts</h1>
         <ul className="h-full flex flex-col gap-1">
-          <li className="border-b border-orange-400 flex h-[40px] pl-2 items-center justify-between group hover:bg-green-500 rounded-lg cursor-pointer">
-            <h1 className="font-bold text-green-400 group-hover:text-green-200">
-              Nike Fit Club
-            </h1>
-            <div className="flex gap-2 pr-2">
-              <p>Run</p>
-              <p>10km</p>
-              <p>34m</p>
-            </div>
-          </li>
-          <li className="border-b border-orange-400 flex h-[40px] pl-2 items-center justify-between group hover:bg-orange-500 rounded-lg cursor-pointer">
-            <h1 className="font-bold text-orange-500 group-hover:text-orange-200">
-              Strava
-            </h1>
-            <div className="flex gap-2 pr-2">
-              <p>Bike</p>
-              <p>40km</p>
-              <p>134m</p>
-            </div>
-          </li>
-          <li className="border-b border-orange-400 flex h-[40px] pl-2 items-center justify-between group hover:bg-orange-500 rounded-lg cursor-pointer">
-            <h1 className="font-bold text-orange-500 group-hover:text-orange-200">
-              Strava
-            </h1>
-            <div className="flex gap-2 pr-2">
-              <p>Run</p>
-              <p>4km</p>
-              <p>34m</p>
-            </div>
-          </li>
-          <li className="border-b border-orange-400 flex h-[40px] pl-2 items-center justify-between group hover:bg-teal-500 rounded-lg cursor-pointer">
-            <h1 className="font-bold text-teal-500 group-hover:text-teal-200">
-              Map My Run
-            </h1>
-            <div className="flex gap-2 pr-2">
-              <p>Walk</p>
-              <p>14km</p>
-              <p>64m</p>
-            </div>
-          </li>
+          {hardcode.map((event, idx) => (
+            <Link
+              to="/post"
+              key={event.app + idx}
+              className={`border-b border-orange-400 flex h-[40px] pl-2 items-center justify-between group hover:bg-${event.color}-500 rounded-lg cursor-pointer`}
+            >
+              <h1
+                className={`font-bold text-${event.color}-500 group-hover:text-${event.color}-200`}
+              >
+                {event.app}
+              </h1>
+              <div className="flex gap-2 pr-2">
+                <p>{event.activity}</p>
+                <p>{event.distance}km</p>
+                <p>{event.time}m</p>
+              </div>
+            </Link>
+          ))}
         </ul>
       </div>
     </div>

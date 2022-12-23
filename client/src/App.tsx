@@ -4,6 +4,7 @@ import Home from "./assets/pages/Home";
 import Groups from "./assets/pages/Groups";
 import Solo from "./assets/pages/Solo";
 import Profile from "./assets/pages/Profile";
+import Post from "./assets/pages/Post";
 import Settings from "./assets/pages/Settings";
 import Login from "./assets/pages/Login";
 import Signup from "./assets/pages/Signup";
@@ -48,6 +49,7 @@ function App() {
             <Route path="solo" element={<Solo />} />
             <Route path="profile" element={<Profile />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="post" element={<Post />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
           </Routes>
