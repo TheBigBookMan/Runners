@@ -16,6 +16,7 @@ const Login = () => {
   const submitForm = () => {
     console.log(formDetails);
   };
+
   return (
     <div className="rounded-2xl shadow-md flex flex-col gap-8 h-5/6 p-2 m-2 bg-orange-200">
       <h1 className="font-bold text-orange-600 text-3xl mx-auto">Login</h1>

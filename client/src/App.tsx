@@ -1,4 +1,5 @@
 import NavBar from "./assets/components/common/NavBar";
+import ReadOnly from "./assets/pages/ReadOnly";
 import Home from "./assets/pages/Home";
 import Groups from "./assets/pages/Groups";
 import Solo from "./assets/pages/Solo";
@@ -26,18 +27,32 @@ import { Routes, Route } from "react-router-dom";
 //* database use MongoDB because not relational, just adding running data and then comparing to others
 
 function App() {
+  //!!! tmporary logged in variable
+  const isLog = true;
   return (
     <div className="h-screen w-full ">
       <NavBar />
-      <Routes>
-        <Route index path="/" element={<Home />} />
-        <Route path="groups" element={<Groups />} />
-        <Route path="solo" element={<Solo />} />
-        <Route path="profile" element={<Profile />} />
-        <Route path="settings" element={<Settings />} />
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
-      </Routes>
+      {!isLog ? (
+        <>
+          <Routes>
+            <Route index path="/" element={<ReadOnly />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="login" element={<Login />} />
+          </Routes>
+        </>
+      ) : (
+        <>
+          <Routes>
+            <Route index path="/" element={<Home />} />
+            <Route path="groups" element={<Groups />} />
+            <Route path="solo" element={<Solo />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+          </Routes>
+        </>
+      )}
     </div>
   );
 }
