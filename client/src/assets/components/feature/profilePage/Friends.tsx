@@ -3,32 +3,32 @@ import { Link } from "react-router-dom";
 const hardcode = [
   {
     name: "Anymamacita",
-    apps: ["Strava", "Nike Run Club"],
+    apps: ["Strava", "NRC"],
     activities: ["runner", "biker"],
   },
   {
     name: "Justina",
-    apps: ["Strava", "Nike Run Club", "Map My Run"],
+    apps: ["Strava", "NRC", "MMR"],
     activities: ["runner", "biker", "swimmer"],
   },
   {
     name: "Nobody",
-    apps: ["Nike Run Club"],
+    apps: ["NRC"],
     activities: ["biker"],
   },
   {
     name: "Anymamacitas",
-    apps: ["Strava", "Nike Run Club"],
+    apps: ["Strava", "NRC"],
     activities: ["runner", "biker"],
   },
   {
     name: "Anymamacitad",
-    apps: ["Strava", "Nike Run Club"],
+    apps: ["Strava", "NRC"],
     activities: ["runner", "biker"],
   },
   {
     name: "Anymamacitaf",
-    apps: ["Strava", "Nike Run Club"],
+    apps: ["Strava", "NRC"],
     activities: ["runner", "biker"],
   },
 ];
@@ -50,7 +50,7 @@ const Friends = () => {
               </h1>
               <ul className="flex gap-1">
                 {item.apps.map((app) => (
-                  <li key={app} className="text-sm">
+                  <li key={app} className="text-xs">
                     {app},{" "}
                   </li>
                 ))}

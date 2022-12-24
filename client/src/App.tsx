@@ -6,6 +6,7 @@ import Solo from "./assets/pages/Solo";
 import Profile from "./assets/pages/Profile";
 import User from "./assets/pages/User";
 import Post from "./assets/pages/Post";
+import ListPosts from "./assets/pages/ListPosts";
 import Settings from "./assets/pages/Settings";
 import Login from "./assets/pages/Login";
 import Signup from "./assets/pages/Signup";
@@ -52,6 +53,7 @@ function App() {
             <Route path="user" element={<User />} />
             <Route path="settings" element={<Settings />} />
             <Route path="post" element={<Post />} />
+            <Route path="listposts" element={<ListPosts />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
           </Routes>
