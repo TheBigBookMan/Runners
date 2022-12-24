@@ -26,7 +26,7 @@ const Groups = () => {
       <ul className="flex justify-end gap-2">
         <li
           onClick={(): void => setSelectedActivity("run")}
-          className={`${
+          className={`cursor-pointer ${
             selectedActivity === "run" && "font-bold"
           } text-orange-600`}
         >
@@ -34,7 +34,7 @@ const Groups = () => {
         </li>
         <li
           onClick={(): void => setSelectedActivity("walk")}
-          className={`${
+          className={`cursor-pointer ${
             selectedActivity === "walk" && "font-bold"
           } text-orange-600`}
         >
@@ -42,7 +42,7 @@ const Groups = () => {
         </li>
         <li
           onClick={(): void => setSelectedActivity("bike")}
-          className={`${
+          className={`cursor-pointer ${
             selectedActivity === "bike" && "font-bold"
           } text-orange-600`}
         >
