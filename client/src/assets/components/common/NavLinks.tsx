@@ -1,35 +1,105 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 //! FIX ANY TYPE
 const NavLinks = ({ setNavOpen }: any) => {
+  const [isActive, setIsActive] = useState<string>("Home");
+
+  const changeLink = (input: string): void => {
+    setIsActive(input);
+  };
+
   // ? temporary login
-  const isIn = false;
+  const isIn = true;
   return (
     <>
-      <Link onClick={() => setNavOpen(false)} to="/">
+      <Link
+        className={`text-orange-${
+          isActive === "Home" ? "600 font-bold" : "400"
+        }`}
+        onClick={() => {
+          changeLink("Home");
+          setNavOpen(false);
+        }}
+        to="/"
+      >
         Home
       </Link>
-      <Link onClick={() => setNavOpen(false)} to="/groups">
+      <Link
+        className={`text-orange-${
+          isActive === "Groups" ? "600 font-bold" : "400"
+        }`}
+        onClick={() => {
+          changeLink("Groups");
+          setNavOpen(false);
+        }}
+        to="/groups"
+      >
         Groups
       </Link>
-      <Link onClick={() => setNavOpen(false)} to="/solo">
+      <Link
+        className={`text-orange-${
+          isActive === "Solo" ? "600 font-bold" : "400"
+        }`}
+        onClick={() => {
+          setNavOpen(false);
+          changeLink("Solo");
+        }}
+        to="/solo"
+      >
         Solo
       </Link>
-      <Link onClick={() => setNavOpen(false)} to="/profile">
+      <Link
+        className={`text-orange-${
+          isActive === "Profile" ? "600 font-bold" : "400"
+        }`}
+        onClick={() => {
+          setNavOpen(false);
+          changeLink("Profile");
+        }}
+        to="/profile"
+      >
         Profile
       </Link>
-      <Link onClick={() => setNavOpen(false)} to="/settings">
+      <Link
+        className={`text-orange-${
+          isActive === "Settings" ? "600 font-bold" : "400"
+        }`}
+        onClick={() => {
+          setNavOpen(false);
+          changeLink("Settings");
+        }}
+        to="/settings"
+      >
         Settings
       </Link>
 
       {isIn ? (
-        <p>Logout</p>
+        <p className={`text-orange-400`}>Logout</p>
       ) : (
         <>
-          <Link onClick={() => setNavOpen(false)} to="/login">
+          <Link
+            className={`text-orange-${
+              isActive === "Login" ? "600 font-bold" : "400"
+            }`}
+            onClick={() => {
+              setNavOpen(false);
+              changeLink("Login");
+            }}
+            to="/login"
+          >
             Login
           </Link>
-          <Link onClick={() => setNavOpen(false)} to="/signup">
+          <Link
+            className={`text-orange-${
+              isActive === "Signup" ? "600 font-bold" : "400"
+            }`}
+            onClick={() => {
+              setNavOpen(false);
+              changeLink("Signup");
+            }}
+            to="/signup"
+          >
             Signup
           </Link>
         </>
