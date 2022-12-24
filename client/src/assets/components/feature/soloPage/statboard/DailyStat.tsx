@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const hardcode = [
   {
     type: "run",
@@ -39,13 +41,62 @@ const hardcode = [
     time: 43,
     speed: 5.4,
   },
+  {
+    type: "run",
+    date: "17/12/2022",
+    location: "Adelaide, South Australia",
+    distance: 12,
+    time: 43,
+    speed: 5.4,
+  },
+  {
+    type: "run",
+    date: "17/12/2022",
+    location: "Adelaide, South Australia",
+    distance: 12,
+    time: 43,
+    speed: 5.4,
+  },
+  {
+    type: "run",
+    date: "17/12/2022",
+    location: "Adelaide, South Australia",
+    distance: 12,
+    time: 43,
+    speed: 5.4,
+  },
+  {
+    type: "run",
+    date: "17/12/2022",
+    location: "Adelaide, South Australia",
+    distance: 12,
+    time: 43,
+    speed: 5.4,
+  },
+  {
+    type: "run",
+    date: "17/12/2022",
+    location: "Adelaide, South Australia",
+    distance: 12,
+    time: 43,
+    speed: 5.4,
+  },
+  {
+    type: "run",
+    date: "17/12/2022",
+    location: "Adelaide, South Australia",
+    distance: 12,
+    time: 43,
+    speed: 5.4,
+  },
 ];
 
 const DailyStat = () => {
   return (
-    <ul className="h-full flex flex-col gap-2">
+    <ul className="h-full flex flex-col gap-2 overflow-y-scroll">
       {hardcode.map((item) => (
-        <li
+        <Link
+          to="/post"
           key={item.date + item.distance}
           className="p-1 flex justify-between h-[50px] group hover:bg-orange-400 hover:rounded-lg cursor-pointer"
         >
@@ -65,7 +116,7 @@ const DailyStat = () => {
             <p className="text-sm">{item.time}min</p>
             <p className="text-sm">{item.speed}kp/h</p>
           </div>
-        </li>
+        </Link>
       ))}
     </ul>
   );
