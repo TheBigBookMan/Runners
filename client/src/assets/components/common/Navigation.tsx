@@ -32,7 +32,7 @@ const Navigation = () => {
         ></span>
       </div>
       {navOpen && (
-        <div className="absolute bg-orange-100 w-[140px] h-[300px] -right-6 top-7 flex flex-col gap-2 p-2">
+        <div className="absolute bg-orange-100 w-[140px] h-[300px] -right-6 top-7 flex flex-col gap-6 p-2">
           <NavLinks setNavOpen={setNavOpen} />
         </div>
       )}

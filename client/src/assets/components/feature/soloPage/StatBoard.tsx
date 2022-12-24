@@ -7,8 +7,6 @@ import YearlyStat from "./statboard/YearlyStat";
 const StatBoard = () => {
   const [selectedTime, setSelectedTime] = useState<string>("daily");
 
-  //TODO for the weekly/monthly/yearly it will be taken to the listpage where each individual post is listed and can look at a calendar style
-
   return (
     <div className="flex flex-col p-2 bg-orange-200 h-4/6 rounded-xl gap-2">
       <ul className="flex flex-end gap-2">
