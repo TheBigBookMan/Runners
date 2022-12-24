@@ -18,7 +18,7 @@ const hardcode = [
   },
   {
     app: "Map My Run",
-    color: "teal",
+    color: "sky",
     activity: "walk",
     distance: 20,
     time: 314,
@@ -53,10 +53,10 @@ const Bio = () => {
             <Link
               to="/post"
               key={event.app + idx}
-              className={`border-b border-orange-400 flex h-[40px] pl-2 items-center justify-between group hover:bg-${event.color}-500 rounded-lg cursor-pointer`}
+              className={`border-b border-orange-400 flex h-[40px] pl-2 items-center justify-between group hover:bg-${event.color}-500 hover:rounded-lg cursor-pointer`}
             >
               <h1
-                className={`font-bold text-${event.color}-500 group-hover:text-${event.color}-200`}
+                className={`font-bold text-${event.color}-500 group-hover:text-${event.color}-100`}
               >
                 {event.app}
               </h1>
