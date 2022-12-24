@@ -11,7 +11,7 @@ const GroupStats = () => {
     <div className="flex flex-col p-2 bg-orange-200 h-full rounded-xl">
       <h1 className="font-bold text-xl text-orange-600">Leaderboard</h1>
       <div className="h-full">
-        <ul className="flex flex-end gap-2">
+        <ul className="flex justify-end gap-2">
           <li
             onClick={() => setSelectedTime("daily")}
             className={`text-orange-500 cursor-pointer ${
