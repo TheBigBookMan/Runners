@@ -30,7 +30,7 @@ const hardcode = [
 ];
 
 const Post = () => {
-  // stravaAPI();
+  stravaAPI();
 
   //TODO in bottom section, can add in more random stats like elevation etc
 
@@ -52,7 +52,10 @@ const Post = () => {
       <h1 className="font-bold text-lg">Strava</h1>
       <ul className="flex flex-col h-full w-full gap-3">
         {hardcode.map((info) => (
-          <li className="flex justify-between border-b border-orange-300">
+          <li
+            key={info.name}
+            className="flex justify-between border-b border-orange-300"
+          >
             <h1 className="text-orange-400">{info.name}</h1>
             <p className="text-orange-600">{info.data}</p>
           </li>
