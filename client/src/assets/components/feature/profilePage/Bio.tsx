@@ -30,6 +30,20 @@ const hardcode = [
     distance: 100,
     time: 134,
   },
+  {
+    app: "Strava",
+    color: "orange",
+    activity: "bike",
+    distance: 100,
+    time: 134,
+  },
+  {
+    app: "Strava",
+    color: "orange",
+    activity: "bike",
+    distance: 100,
+    time: 134,
+  },
 ];
 
 const Bio = () => {
@@ -46,14 +60,14 @@ const Bio = () => {
           <p className="italic">walker, runner, swimmer</p>
         </div>
       </div>
-      <div className="flex flex-col h-full overflow-y-scroll">
-        <h1 className="font-bold text-orange-600">Recent posts</h1>
-        <ul className="h-full flex flex-col gap-1">
+      <div className="flex flex-col h-full ">
+        <h1 className="font-bold text-orange-600">Recent activity</h1>
+        <ul className="h-3/6 flex flex-col gap-1 overflow-y-scroll">
           {hardcode.map((event, idx) => (
             <Link
               to="/post"
               key={event.app + idx}
-              className={`border-b border-orange-400 flex h-[40px] pl-2 items-center justify-between group hover:bg-${event.color}-500 hover:rounded-lg cursor-pointer`}
+              className={`border-b border-orange-400 flex h-[60px] pl-2 items-center justify-between group hover:bg-${event.color}-500 hover:rounded-lg cursor-pointer`}
             >
               <h1
                 className={`font-bold text-${event.color}-500 group-hover:text-${event.color}-100`}

@@ -4,6 +4,7 @@
 
 import Me from "../images/Me.jpg";
 import { stravaAPI } from "./../hooks/StravaAPI";
+import { Link } from "react-router-dom";
 
 const hardcode = [
   {
@@ -33,21 +34,26 @@ const Post = () => {
 
   //TODO in bottom section, can add in more random stats like elevation etc
 
+  //TODO the app name will be in the same coloras the app theme
+
   return (
     <div className="flex flex-col gap-4 p-2">
       <div className="flex gap-1">
         <img src={Me} className="h-44 w-44" />
         <div className="flex flex-col">
-          <h1 className="font-bold text-orange-500">Ben Smerd</h1>
+          <Link to="/user" className="font-bold text-orange-500">
+            Ben Smerd
+          </Link>
           <p className="text-sm text-gray-400">Adelaide, South Australia</p>
           <p className="text-sm">23/12/2022</p>
           <h1 className="font-bold text-orange-500">run</h1>
         </div>
       </div>
+      <h1 className="font-bold text-lg">Strava</h1>
       <ul className="flex flex-col h-full w-full gap-3">
         {hardcode.map((info) => (
           <li className="flex justify-between border-b border-orange-300">
-            <h1 className="font-bold text-orange-300">{info.name}</h1>
+            <h1 className="text-orange-400">{info.name}</h1>
             <p className="text-orange-600">{info.data}</p>
           </li>
         ))}
