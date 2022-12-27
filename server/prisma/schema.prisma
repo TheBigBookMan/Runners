@@ -13,11 +13,12 @@ datasource db {
 //* profile pic, name, location, apps[], joined date, activities[], tracked activities(amount for weekly, monthly and yearly overall stats)[], friends[], 
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  profilePic String
+  profilePic String?
   name String @unique
   location String[]
   apps String[]
   joinedDate String
+  groups Group[]?
   activityTypes ActivityType[]
   activities Activity[]
   friendIds String[] @db.ObjectId
@@ -43,13 +44,19 @@ model Activity {
   userId String @unique @db.ObjectId
   user User @relation(fields: [userId], references: [id])
   appUsed String
+  appUsedId Int
   distance Int
   time Int
   speed Int
+  date Int
+  location String
 }
 
 //* name, members, admin, subdocs- (run, walk bike)-- each of these then has the distance, time, speed etc, memeber name/app used/data stat
 model Group {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  memberId String[] @db.ObjectId
+  members User[] @relation(fields: [memberId], references: [id])
 }
 
