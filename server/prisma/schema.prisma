@@ -10,9 +10,42 @@ datasource db {
 
 // ? MODELS HERE
 //! for the daily activity and the list of activities individually, can use API call as better for all the data
-//* profile pic, name, location, apps[], joined date, activities[], tracked activities(amount for weekly, monthly and yearly overall stats)[], friends[], (total time, total distance, average pace) FOR EACH ACTIVITY TYPE AND APP-- maybe each activity ID from the application so easier to call???
+//* profile pic, name, location, apps[], joined date, activities[], tracked activities(amount for weekly, monthly and yearly overall stats)[], friends[], 
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  profilePic String
+  name String @unique
+  location String[]
+  apps String[]
+  joinedDate String
+  activityTypes ActivityType[]
+  activities Activity[]
+  friendIds String[] @db.ObjectId
+  friends User[] @relation("friends", fields: [friendIds], references: [id])
+}
+
+//* (total time, total distance, average pace) FOR EACH ACTIVITY TYPE AND APP-- maybe each activity ID from the application so easier to call???
+model ActivityType {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  activityTypeId String @db.ObjectId
+  user User @relation(fields: [activityTypeId], references: [id])
+  name String @unique
+  totalTime Int
+  totalDistance Int
+  averagePace Int
+  activity Activity[]
+}
+
+model Activity {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  activityTypeId String @unique @db.ObjectId
+  activityType ActivityType @relation(fields: [activityTypeId], references: [id])
+  userId String @unique @db.ObjectId
+  user User @relation(fields: [userId], references: [id])
+  appUsed String
+  distance Int
+  time Int
+  speed Int
 }
 
 //* name, members, admin, subdocs- (run, walk bike)-- each of these then has the distance, time, speed etc, memeber name/app used/data stat
