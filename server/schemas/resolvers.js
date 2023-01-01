@@ -36,10 +36,10 @@ const resolvers = {
     allUsers: () => {
       return prisma.user.findMany();
     },
-    singleUser: async (parent, { name }, { res }) => {
+    singleUser: async (parent, { username }, { res }) => {
       const user = await prisma.user.findUnique({
         where: {
-          name,
+          username,
         },
       });
 
@@ -51,15 +51,19 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { name, password }, { res }) => {
+    addUser: async (parent, { username, password }, { res }) => {
       //TODO add in bcryprt hashing
-      const user = await prisma.user.create({ name, password });
-      return { user };
+      const createdUser = await prisma.user.create({
+        data: { username, password },
+      });
+      return createdUser;
     },
-    login: async (parent, { name, password }, { res }) => {
+    login: async (parent, { username, password }, { res }) => {
       //TODO add in password compare hashs
-      const user = await prisma.user.findUnique({
-        user,
+      const findUser = await prisma.user.findUnique({
+        where: {
+          username,
+        },
       });
     },
   },
