@@ -4,8 +4,6 @@ const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const { authMiddleware } = require("./utils/auth");
 const { typeDefs, resolvers } = require("./schemas");
-const db = require("./config/connection");
-const { type } = require("os");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -21,7 +19,8 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
-const startPolloServer = async (typeDefs, resolvers, context) => {
+//TODO add context back into parameters when created
+const startApolloServer = async (typeDefs, resolvers) => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -32,17 +31,13 @@ const startPolloServer = async (typeDefs, resolvers, context) => {
 
   server.applyMiddleware({ app });
 
-  db.once("open", () => {
-    app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}`);
-      console.log(
-        `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
-      );
-    });
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}`);
+    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
 };
 
-// startPolloServer(typeDefs, resolvers, gqlAuthMiddleware);
+// startApolloServer(typeDefs, resolvers, gqlAuthMiddleware);
 
 //? temp
-startPolloServer(typeDefs, resolvers);
+startApolloServer(typeDefs, resolvers);
