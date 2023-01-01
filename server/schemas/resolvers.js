@@ -32,9 +32,37 @@ const resolvers = {
     },
   }),
 
-  Query: {},
+  Query: {
+    allUsers: () => {
+      return prisma.user.findMany();
+    },
+    singleUser: async (parent, { name }, { res }) => {
+      const user = await prisma.user.findUnique({
+        where: {
+          name,
+        },
+      });
 
-  Mutation: {},
+      if (!user) {
+        return "No user found.";
+      }
+      return user;
+    },
+  },
+
+  Mutation: {
+    addUser: async (parent, { name, password }, { res }) => {
+      //TODO add in bcryprt hashing
+      const user = await prisma.user.create({ name, password });
+      return { user };
+    },
+    login: async (parent, { name, password }, { res }) => {
+      //TODO add in password compare hashs
+      const user = await prisma.user.findUnique({
+        user,
+      });
+    },
+  },
 };
 
 module.exports = resolvers;
