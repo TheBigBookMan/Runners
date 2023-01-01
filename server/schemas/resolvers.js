@@ -49,7 +49,7 @@ const resolvers = {
       return user;
     },
   },
-
+  //
   Mutation: {
     addUser: async (parent, { username, password }, { res }) => {
       //TODO add in bcryprt hashing

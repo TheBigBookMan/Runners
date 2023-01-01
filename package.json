@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\""
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/TheBigBookMan/Runners/issues"
   },
-  "homepage": "https://github.com/TheBigBookMan/Runners#readme"
+  "homepage": "https://github.com/TheBigBookMan/Runners#readme",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
 }

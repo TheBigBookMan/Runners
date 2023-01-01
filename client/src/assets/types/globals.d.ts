@@ -13,7 +13,7 @@ declare global {
 
   interface FormDetails {
     username: string;
-    email: string;
+    // email: string;
     password: string;
   }
 }

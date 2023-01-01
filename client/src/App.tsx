@@ -11,6 +11,12 @@ import Settings from "./assets/pages/Settings";
 import Login from "./assets/pages/Login";
 import Signup from "./assets/pages/Signup";
 import { Routes, Route } from "react-router-dom";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
 
 // * running application where import strava data on runs
 // https://developers.strava.com/docs/reference/
@@ -29,37 +35,44 @@ import { Routes, Route } from "react-router-dom";
 
 //* database use MongoDB because not relational, just adding running data and then comparing to others
 
+const client = new ApolloClient({
+  uri: "http://localhost:3001/graphql",
+  cache: new InMemoryCache(),
+});
+
 function App() {
   //!!! tmporary logged in variable
   const isLog = true;
   return (
-    <div className="h-screen w-full ">
-      <NavBar />
-      {!isLog ? (
-        <>
-          <Routes>
-            <Route index path="/" element={<ReadOnly />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="login" element={<Login />} />
-          </Routes>
-        </>
-      ) : (
-        <>
-          <Routes>
-            <Route index path="/" element={<Home />} />
-            <Route path="groups" element={<Groups />} />
-            <Route path="solo" element={<Solo />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="user" element={<User />} />
-            <Route path="settings" element={<Settings />} />
-            <Route path="post" element={<Post />} />
-            <Route path="listposts" element={<ListPosts />} />
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<Signup />} />
-          </Routes>
-        </>
-      )}
-    </div>
+    <ApolloProvider client={client}>
+      <div className="h-screen w-full ">
+        <NavBar />
+        {!isLog ? (
+          <>
+            <Routes>
+              <Route index path="/" element={<ReadOnly />} />
+              <Route path="signup" element={<Signup />} />
+              <Route path="login" element={<Login />} />
+            </Routes>
+          </>
+        ) : (
+          <>
+            <Routes>
+              <Route index path="/" element={<Home />} />
+              <Route path="groups" element={<Groups />} />
+              <Route path="solo" element={<Solo />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="user" element={<User />} />
+              <Route path="settings" element={<Settings />} />
+              <Route path="post" element={<Post />} />
+              <Route path="listposts" element={<ListPosts />} />
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
+            </Routes>
+          </>
+        )}
+      </div>
+    </ApolloProvider>
   );
 }
 
