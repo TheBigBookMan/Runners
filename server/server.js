@@ -42,4 +42,7 @@ const startPolloServer = async (typeDefs, resolvers, context) => {
   });
 };
 
-startPolloServer(typeDefs, resolvers, gqlAuthMiddleware);
+// startPolloServer(typeDefs, resolvers, gqlAuthMiddleware);
+
+//? temp
+startPolloServer(typeDefs, resolvers);
