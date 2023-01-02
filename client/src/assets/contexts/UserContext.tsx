@@ -59,6 +59,7 @@ export const Provider = ({ children }: Prototypes) => {
   const signUpUser = (newUser: UserInfo) => {
     signUpMutation({ variables: { ...newUser } });
   };
+  console.log(signUpData);
 
   //? Function to login the user using the login mutation from Apollo
   const loginUser = async ({

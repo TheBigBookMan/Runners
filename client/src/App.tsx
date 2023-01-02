@@ -18,6 +18,7 @@ import {
   ApolloProvider,
   createHttpLink,
 } from "@apollo/client";
+import UseUserContext from "./assets/contexts/UserContext";
 
 // * running application where import strava data on runs
 // https://developers.strava.com/docs/reference/
@@ -42,14 +43,14 @@ const client = new ApolloClient({
 });
 
 function App() {
-  //!!! tmporary logged in variable
-  const isLog = true;
+  const { isLoggedIn } = UseUserContext();
+
   return (
     <ApolloProvider client={client}>
       <UserProvider>
         <div className="h-screen w-full ">
           <NavBar />
-          {!isLog ? (
+          {!isLoggedIn ? (
             <>
               <Routes>
                 <Route index path="/" element={<ReadOnly />} />
