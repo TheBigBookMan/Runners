@@ -1,16 +1,3 @@
-import NavBar from "./assets/components/common/NavBar";
-import ReadOnly from "./assets/pages/ReadOnly";
-import Home from "./assets/pages/Home";
-import Groups from "./assets/pages/Groups";
-import Solo from "./assets/pages/Solo";
-import Profile from "./assets/pages/Profile";
-import User from "./assets/pages/User";
-import Post from "./assets/pages/Post";
-import ListPosts from "./assets/pages/ListPosts";
-import Settings from "./assets/pages/Settings";
-import Login from "./assets/pages/Login";
-import Signup from "./assets/pages/Signup";
-import { Routes, Route } from "react-router-dom";
 import { Provider as UserProvider } from "./assets/contexts/UserContext";
 import {
   ApolloClient,
@@ -18,7 +5,7 @@ import {
   ApolloProvider,
   createHttpLink,
 } from "@apollo/client";
-import UseUserContext from "./assets/contexts/UserContext";
+import Pages from "./assets/pages/Pages";
 
 // * running application where import strava data on runs
 // https://developers.strava.com/docs/reference/
@@ -43,38 +30,10 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const { isLoggedIn } = UseUserContext();
-
   return (
     <ApolloProvider client={client}>
       <UserProvider>
-        <div className="h-screen w-full ">
-          <NavBar />
-          {!isLoggedIn ? (
-            <>
-              <Routes>
-                <Route index path="/" element={<ReadOnly />} />
-                <Route path="signup" element={<Signup />} />
-                <Route path="login" element={<Login />} />
-              </Routes>
-            </>
-          ) : (
-            <>
-              <Routes>
-                <Route index path="/" element={<Home />} />
-                <Route path="groups" element={<Groups />} />
-                <Route path="solo" element={<Solo />} />
-                <Route path="profile" element={<Profile />} />
-                <Route path="user" element={<User />} />
-                <Route path="settings" element={<Settings />} />
-                <Route path="post" element={<Post />} />
-                <Route path="listposts" element={<ListPosts />} />
-                <Route path="login" element={<Login />} />
-                <Route path="signup" element={<Signup />} />
-              </Routes>
-            </>
-          )}
-        </div>
+        <Pages />
       </UserProvider>
     </ApolloProvider>
   );
