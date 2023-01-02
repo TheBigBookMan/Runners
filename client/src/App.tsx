@@ -11,6 +11,7 @@ import Settings from "./assets/pages/Settings";
 import Login from "./assets/pages/Login";
 import Signup from "./assets/pages/Signup";
 import { Routes, Route } from "react-router-dom";
+import { Provider as UserProvider } from "./assets/contexts/UserContext";
 import {
   ApolloClient,
   InMemoryCache,
@@ -45,33 +46,35 @@ function App() {
   const isLog = true;
   return (
     <ApolloProvider client={client}>
-      <div className="h-screen w-full ">
-        <NavBar />
-        {!isLog ? (
-          <>
-            <Routes>
-              <Route index path="/" element={<ReadOnly />} />
-              <Route path="signup" element={<Signup />} />
-              <Route path="login" element={<Login />} />
-            </Routes>
-          </>
-        ) : (
-          <>
-            <Routes>
-              <Route index path="/" element={<Home />} />
-              <Route path="groups" element={<Groups />} />
-              <Route path="solo" element={<Solo />} />
-              <Route path="profile" element={<Profile />} />
-              <Route path="user" element={<User />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="post" element={<Post />} />
-              <Route path="listposts" element={<ListPosts />} />
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Signup />} />
-            </Routes>
-          </>
-        )}
-      </div>
+      <UserProvider>
+        <div className="h-screen w-full ">
+          <NavBar />
+          {!isLog ? (
+            <>
+              <Routes>
+                <Route index path="/" element={<ReadOnly />} />
+                <Route path="signup" element={<Signup />} />
+                <Route path="login" element={<Login />} />
+              </Routes>
+            </>
+          ) : (
+            <>
+              <Routes>
+                <Route index path="/" element={<Home />} />
+                <Route path="groups" element={<Groups />} />
+                <Route path="solo" element={<Solo />} />
+                <Route path="profile" element={<Profile />} />
+                <Route path="user" element={<User />} />
+                <Route path="settings" element={<Settings />} />
+                <Route path="post" element={<Post />} />
+                <Route path="listposts" element={<ListPosts />} />
+                <Route path="login" element={<Login />} />
+                <Route path="signup" element={<Signup />} />
+              </Routes>
+            </>
+          )}
+        </div>
+      </UserProvider>
     </ApolloProvider>
   );
 }

@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import UseUserContext from "../../contexts/UserContext";
 
 //! FIX ANY TYPE
 const NavLinks = ({ setNavOpen }: any) => {
   const [isActive, setIsActive] = useState<string>("Home");
+  const { isLoggedIn, logoutUser } = UseUserContext();
 
   const changeLink = (input: string): void => {
     setIsActive(input);
   };
 
-  // ? temporary login
-  const isIn = true;
   return (
     <>
       <Link
@@ -74,8 +74,10 @@ const NavLinks = ({ setNavOpen }: any) => {
         Settings
       </Link>
 
-      {isIn ? (
-        <p className={`text-orange-400`}>Logout</p>
+      {isLoggedIn ? (
+        <p onClick={logoutUser} className={`text-orange-400`}>
+          Logout
+        </p>
       ) : (
         <>
           <Link

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import UseUserContext from "../contexts/UserContext";
 
 const Login = () => {
   const [formDetails, setFormDetails] = useState<UserInfo>({
@@ -7,6 +8,7 @@ const Login = () => {
     // email: "",
     password: "",
   });
+  const { loginUser } = UseUserContext();
 
   const changeDetails = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -15,6 +17,7 @@ const Login = () => {
 
   const submitForm = () => {
     console.log(formDetails);
+    loginUser({ ...formDetails });
   };
 
   return (

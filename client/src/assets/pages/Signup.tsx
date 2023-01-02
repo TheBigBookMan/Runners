@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import UseUserContext from "../contexts/UserContext";
 
 const Signup = () => {
   const [formDetails, setFormDetails] = useState<UserInfo>({
@@ -7,6 +8,7 @@ const Signup = () => {
     // email: "",
     password: "",
   });
+  const { signUpUser, loading } = UseUserContext();
 
   const changeDetails = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -15,6 +17,7 @@ const Signup = () => {
 
   const submitForm = () => {
     console.log(formDetails);
+    signUpUser({ ...formDetails });
   };
 
   return (
@@ -50,7 +53,7 @@ const Signup = () => {
           to="/"
           className="w-[100px] h-[50px] bg-orange-500 flex items-center justify-center rounded-xl font-bold text-orange-200 hover:bg-orange-600"
         >
-          Submit
+          {loading ? "Loading..." : "Submit"}
         </Link>
       </form>
       <p>
