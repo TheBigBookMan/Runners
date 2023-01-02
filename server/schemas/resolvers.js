@@ -67,10 +67,10 @@ const resolvers = {
       const saltRounds = await bcrypt.genSalt(10);
       password = await bcrypt.hash(password, saltRounds);
 
-      const createdUser = await prisma.user.create({
+      const user = await prisma.user.create({
         data: { username, password },
       });
-      return createdUser;
+      return { user };
     },
     login: async (parent, { username, password }, { res }) => {
       //TODO add in password compare hashs
