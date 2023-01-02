@@ -1,15 +1,12 @@
-import { useMutation } from "@apollo/client/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { SIGNUP } from "../graphql/queries";
 
 const Signup = () => {
-  const [formDetails, setFormDetails] = useState<FormDetails>({
+  const [formDetails, setFormDetails] = useState<UserInfo>({
     username: "",
     // email: "",
     password: "",
   });
-  const [signUpMutation, { data: signUpData, loading }] = useMutation(SIGNUP);
 
   const changeDetails = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -18,7 +15,6 @@ const Signup = () => {
 
   const submitForm = () => {
     console.log(formDetails);
-    signUpMutation({ variables: { ...formDetails } });
   };
 
   return (

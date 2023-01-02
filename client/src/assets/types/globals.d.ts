@@ -11,7 +11,7 @@ declare global {
     swim: string;
   }
 
-  interface FormDetails {
+  interface UserInfo {
     username: string;
     // email: string;
     password: string;

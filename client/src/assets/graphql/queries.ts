@@ -28,6 +28,12 @@ export const LOGIN = gql`
   }
 `;
 
+export const LOGOUT = gql`
+  mutation Logout {
+    logout
+  }
+`;
+
 export const GET_SINGLE_USER = gql`
   query getSingleUser($username: String!) {
     singleUser(username: $username) {
