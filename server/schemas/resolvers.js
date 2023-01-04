@@ -85,6 +85,12 @@ const resolvers = {
         throw Error("Not work");
       }
     },
+    logout: async (parent, args, { res, user }) => {
+      if (!user) {
+        return false;
+      }
+      return true;
+    },
   },
 };
 
