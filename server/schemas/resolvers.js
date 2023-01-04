@@ -80,10 +80,9 @@ const resolvers = {
       });
       const hashedPassword = user.password;
       if (bcrypt.compareSync(password, hashedPassword) === true) {
-        console.log("work");
         return { user };
       } else {
-        console.log("Login not work");
+        throw Error("Not work");
       }
     },
   },

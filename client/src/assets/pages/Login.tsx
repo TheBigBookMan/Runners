@@ -16,7 +16,6 @@ const Login = () => {
   };
 
   const submitForm = () => {
-    console.log(formDetails);
     loginUser({ ...formDetails });
   };
 

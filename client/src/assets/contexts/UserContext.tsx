@@ -73,6 +73,7 @@ export const Provider = ({ children }: Prototypes) => {
       await loginMutation({ variables: { username, password } });
     } catch (error) {
       console.log(error);
+      // throw Error("not work");
       return error;
     }
   };
