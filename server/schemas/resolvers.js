@@ -73,12 +73,18 @@ const resolvers = {
       return { user };
     },
     login: async (parent, { username, password }, { res }) => {
-      //TODO add in password compare hashs
-      const findUser = await prisma.user.findUnique({
+      const user = await prisma.user.findUnique({
         where: {
           username,
         },
       });
+      const hashedPassword = user.password;
+      if (bcrypt.compareSync(password, hashedPassword) === true) {
+        console.log("work");
+        return { user };
+      } else {
+        console.log("Login not work");
+      }
     },
   },
 };
