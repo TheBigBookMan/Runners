@@ -75,9 +75,13 @@ const NavLinks = ({ setNavOpen }: any) => {
       </Link>
 
       {isLoggedIn ? (
-        <p onClick={logoutUser} className={`cursor-pointer text-orange-400`}>
+        <Link
+          to="/"
+          onClick={logoutUser}
+          className={`cursor-pointer text-orange-400`}
+        >
           Logout
-        </p>
+        </Link>
       ) : (
         <>
           <Link
