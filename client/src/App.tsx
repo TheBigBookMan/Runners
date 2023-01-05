@@ -6,6 +6,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import Pages from "./assets/pages/Pages";
+import { setContext } from "@apollo/client/link/context";
 
 // * running application where import strava data on runs
 // https://developers.strava.com/docs/reference/
@@ -24,8 +25,25 @@ import Pages from "./assets/pages/Pages";
 
 //* database use MongoDB because not relational, just adding running data and then comparing to others
 
-const client = new ApolloClient({
+const httpLink = createHttpLink({
   uri: "http://localhost:3001/graphql",
+});
+
+const authLink = setContext((_, { headers }) => {
+  const user = JSON.parse(localStorage.getItem("user") as string);
+  if (user === null) return;
+
+  const { token } = user;
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
