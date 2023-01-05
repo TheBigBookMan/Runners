@@ -2,6 +2,7 @@ const { PrismaClient } = require("@prisma/client");
 const { AuthenticationError } = require("apollo-server-express");
 const { GraphQLScalarType, Kind } = require("graphql");
 const bcrypt = require("bcryptjs");
+const { signToken } = require("../utils/auth");
 
 const prisma = new PrismaClient();
 
@@ -69,7 +70,8 @@ const resolvers = {
       const user = await prisma.user.create({
         data: { username, password },
       });
-      return { user };
+      const token = signToken(user);
+      return { user, token };
     },
     login: async (parent, { username, password }, { res }) => {
       const user = await prisma.user.findUnique({
@@ -79,7 +81,8 @@ const resolvers = {
       });
       const hashedPassword = user.password;
       if (bcrypt.compareSync(password, hashedPassword) === true) {
-        return { user };
+        const token = signToken(user);
+        return { user, token };
       } else {
         throw Error(
           "Could not login, please check your details and try again..."
