@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client/react";
 import { SIGNUP, LOGIN, LOGOUT } from "../graphql/queries";
 import createCtx from "./index";
+import { useNavigate } from "react-router";
 
 interface CtxUser {
   user: UserInfo | null;
@@ -18,14 +19,11 @@ interface CtxUser {
   logoutUser: () => void;
 }
 
-interface Prototypes {
-  children: React.ReactNode;
-}
-
 const localUser = JSON.parse(localStorage.getItem("user") as string) || null;
 const [useCtx, UserProvider] = createCtx<CtxUser>();
 
 export const Provider = ({ children }: Prototypes) => {
+  const nav = useNavigate();
   const [user, setUser] = useState<UserInfo | null>(localUser);
   const [signUpMutation, { data: signUpData, loading }] = useMutation(SIGNUP);
   const [loginMutation, { data: loginData, error }] = useMutation(LOGIN);
@@ -57,8 +55,14 @@ export const Provider = ({ children }: Prototypes) => {
   };
 
   //? Function to sign up the user using the signup mutation from Apollo
-  const signUpUser = (newUser: UserInfo) => {
-    signUpMutation({ variables: { ...newUser } });
+  const signUpUser = async (newUser: UserInfo) => {
+    try {
+      await signUpMutation({ variables: { ...newUser } });
+      nav("/");
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
   };
 
   //? Function to login the user using the login mutation from Apollo
@@ -71,6 +75,7 @@ export const Provider = ({ children }: Prototypes) => {
   }) => {
     try {
       await loginMutation({ variables: { username, password } });
+      nav("/");
     } catch (error) {
       console.log(error);
       // throw Error("not work");

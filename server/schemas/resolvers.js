@@ -53,7 +53,6 @@ const resolvers = {
   //
   Mutation: {
     addUser: async (parent, { username, password }, { res }) => {
-      //TODO add in bcryprt hashing
       const findUser = await prisma.user.findUnique({
         where: {
           username,
@@ -82,7 +81,9 @@ const resolvers = {
       if (bcrypt.compareSync(password, hashedPassword) === true) {
         return { user };
       } else {
-        throw Error("Not work");
+        throw Error(
+          "Could not login, please check your details and try again..."
+        );
       }
     },
     logout: async (parent, args, { res, user }) => {

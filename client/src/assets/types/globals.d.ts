@@ -16,4 +16,8 @@ declare global {
     // email: string;
     password: string;
   }
+
+  interface Prototypes {
+    children: React.ReactNode;
+  }
 }
