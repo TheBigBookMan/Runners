@@ -34,6 +34,16 @@ export const LOGOUT = gql`
   }
 `;
 
+export const ME = gql`
+  query Me {
+    me {
+      _id
+      username
+      joinedDate
+    }
+  }
+`;
+
 export const GET_SINGLE_USER = gql`
   query getSingleUser($username: String!) {
     singleUser(username: $username) {

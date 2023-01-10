@@ -1,10 +1,18 @@
 import Me from "../../../images/Me.jpg";
 import RecentActivity from "./RecentActivity";
-import { Link } from "react-router-dom";
+import { ME } from "../../../graphql/queries";
+import { useQuery } from "@apollo/client";
+import { useEffect } from "react";
 
 //? get user info from the context of the resolver and use that as a findUnique
 
 const Bio = () => {
+  const { data: meData } = useQuery(ME);
+
+  useEffect(() => {
+    console.log(meData);
+  }, []);
+
   return (
     <div className="rounded-2xl shadow-md flex flex-col h-3/6 p-2 bg-orange-200">
       <div className="flex gap-2">

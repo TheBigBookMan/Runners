@@ -38,7 +38,7 @@ const resolvers = {
     allUsers: () => {
       return prisma.user.findMany();
     },
-    singleUser: async (parent, { username }, { res }) => {
+    singleUser: async (parent, { username }, context) => {
       const user = await prisma.user.findUnique({
         where: {
           username,
@@ -50,8 +50,12 @@ const resolvers = {
       }
       return user;
     },
+    me: async (parent, args, { user }) => {
+      console.log(user);
+      return user;
+    },
   },
-  //
+
   Mutation: {
     addUser: async (parent, { username, password }, { res }) => {
       const findUser = await prisma.user.findUnique({

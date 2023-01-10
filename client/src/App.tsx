@@ -31,7 +31,9 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   const user = JSON.parse(localStorage.getItem("user") as string);
-  if (user === null) return;
+  if (user === null) {
+    return;
+  }
 
   const { token } = user;
   return {
