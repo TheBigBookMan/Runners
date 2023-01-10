@@ -17,7 +17,7 @@ const Pages = () => {
   const { isLoggedIn } = UseUserContext();
 
   return (
-    <div className="h-screen w-full ">
+    <div className="h-screen w-full">
       <NavBar />
       {!isLoggedIn ? (
         <>
