@@ -17,6 +17,11 @@ declare global {
     password: string;
   }
 
+  interface UserBio {
+    username: string;
+    joinedDate: string;
+  }
+
   interface Prototypes {
     children: React.ReactNode;
   }

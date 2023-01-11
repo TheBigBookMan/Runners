@@ -44,12 +44,12 @@ export const ME = gql`
   }
 `;
 
+//?? just temp, will probably have this for when clicking on user profile
 export const GET_SINGLE_USER = gql`
   query getSingleUser($username: String!) {
     singleUser(username: $username) {
       id
       username
-      password
       joinedDate
     }
   }
