@@ -37,7 +37,6 @@ export const Provider = ({ children }: Prototypes) => {
   //? If the signupdata is changed (someone signs up) then that data is automatically logged in
   useEffect(() => {
     if (signUpData) {
-      console.log(signUpData);
       authenticateUser(signUpData.addUser);
     }
   }, [signUpData]);

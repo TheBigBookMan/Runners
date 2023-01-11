@@ -4,7 +4,7 @@ const typeDefs = gql`
   scalar DateTime
 
   type User {
-    _id: ID
+    id: ID
     username: String
     password: String
     joinedDate: DateTime

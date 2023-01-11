@@ -36,6 +36,7 @@ const authLink = setContext((_, { headers }) => {
   }
 
   const { token } = user;
+  console.log(headers);
   return {
     headers: {
       ...headers,

@@ -5,7 +5,7 @@ export const SIGNUP = gql`
     addUser(username: $username, password: $password) {
       token
       user {
-        _id
+        id
         username
         password
         joinedDate
@@ -19,7 +19,7 @@ export const LOGIN = gql`
     login(username: $username, password: $password) {
       token
       user {
-        _id
+        id
         username
         password
         joinedDate
@@ -37,7 +37,7 @@ export const LOGOUT = gql`
 export const ME = gql`
   query Me {
     me {
-      _id
+      id
       username
       joinedDate
     }
@@ -47,7 +47,7 @@ export const ME = gql`
 export const GET_SINGLE_USER = gql`
   query getSingleUser($username: String!) {
     singleUser(username: $username) {
-      _id
+      id
       username
       password
       joinedDate
