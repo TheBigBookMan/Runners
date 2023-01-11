@@ -26,6 +26,7 @@ const typeDefs = gql`
     addUser(username: String!, password: String!): Auth
     login(username: String!, password: String!): Auth
     logout: Boolean
+    addAppName(appName: String!): User
   }
 `;
 

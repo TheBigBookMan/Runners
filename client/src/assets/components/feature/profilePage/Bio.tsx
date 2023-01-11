@@ -17,7 +17,7 @@ const Bio = () => {
     }
   }, [meData]);
 
-  //?? temporary button to add in an application name, will actually trigger once a user connects up to the application through the API and agrees to connect data
+  //?? on the "connect to application" button, the user will get a choice for what app to connect to and then the authenitcation from that application will come up through API and user can connect and then it will show underneath with the database what they have connected to
 
   return (
     <div className="rounded-2xl shadow-md flex flex-col h-3/6 p-2 bg-orange-200">
@@ -34,7 +34,24 @@ const Bio = () => {
               <p className="text-sm cursor-pointer underline">
                 Connect to application
               </p>
-              <p className="text-sm">Strava, Nike Fit Club, Map My Run</p>
+              <ul className="flex gap-1">
+                {userInfo.apps.map((app) => (
+                  <p
+                    key={app}
+                    className={`text-sm text-${
+                      app === "Strava"
+                        ? "orange-600"
+                        : app === "Nike Fit Club"
+                        ? "green-400"
+                        : app === "Map My Run"
+                        ? "sky-500"
+                        : ""
+                    } `}
+                  >
+                    {app}
+                  </p>
+                ))}
+              </ul>
               <p className="text-sm">
                 Joined on- <span>{userInfo.joinedDate}</span>
               </p>

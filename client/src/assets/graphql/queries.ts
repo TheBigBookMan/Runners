@@ -39,6 +39,7 @@ export const ME = gql`
       id
       username
       joinedDate
+      apps
     }
   }
 `;

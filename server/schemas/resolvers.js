@@ -104,6 +104,18 @@ const resolvers = {
       }
       return true;
     },
+    addAppName: async (parent, { appName }, { user }) => {
+      const { id } = user;
+      const updatedUser = await prisma.user.update({
+        where: {
+          id,
+        },
+        data: {
+          apps: { push: appName },
+        },
+      });
+      return updatedUser;
+    },
   },
 };
 

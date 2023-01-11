@@ -20,6 +20,7 @@ declare global {
   interface UserBio {
     username: string;
     joinedDate: string;
+    apps: [string];
   }
 
   interface Prototypes {
