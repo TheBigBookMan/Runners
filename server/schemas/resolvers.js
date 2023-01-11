@@ -51,8 +51,13 @@ const resolvers = {
       return user;
     },
     me: async (parent, args, { user }) => {
-      console.log(user);
-      return user;
+      const { id } = user;
+      const findUser = await prisma.user.findUnique({
+        where: {
+          id,
+        },
+      });
+      return findUser;
     },
   },
 

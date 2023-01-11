@@ -19,8 +19,6 @@ module.exports = {
 
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      console.log("authhh");
-      console.log(data);
       req.user = data;
     } catch (error) {
       console.log(error);
@@ -30,8 +28,8 @@ module.exports = {
   },
 
   //* JWT function to sign the token
-  signToken: function ({ _id }) {
-    const payload = { _id };
+  signToken: function ({ id }) {
+    const payload = { id };
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };
