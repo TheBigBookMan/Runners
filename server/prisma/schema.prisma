@@ -22,9 +22,10 @@ model User {
   username       String @unique
   password   String
   joinedDate DateTime @default(now())
+  apps String[]
   // profilePic String?
   // location String[]
-  // apps String[]
+ 
   // groupId String[] @db.ObjectId
   // groups Group[] @relation(fields: [groupId], references: [id])
   // activityTypes ActivityType[]

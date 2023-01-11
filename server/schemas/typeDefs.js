@@ -8,6 +8,7 @@ const typeDefs = gql`
     username: String
     password: String
     joinedDate: DateTime
+    apps: [String]
   }
 
   type Auth {

@@ -16,7 +16,8 @@ const Bio = () => {
       setUserInfo(meData.me);
     }
   }, [meData]);
-  console.log(userInfo);
+
+  //?? temporary button to add in an application name, will actually trigger once a user connects up to the application through the API and agrees to connect data
 
   return (
     <div className="rounded-2xl shadow-md flex flex-col h-3/6 p-2 bg-orange-200">
@@ -30,11 +31,13 @@ const Bio = () => {
               <h1 className="font-bold text-orange-500 text-2xl">
                 {userInfo.username}
               </h1>
+              <p className="text-sm cursor-pointer underline">
+                Connect to application
+              </p>
               <p className="text-sm">Strava, Nike Fit Club, Map My Run</p>
               <p className="text-sm">
                 Joined on- <span>{userInfo.joinedDate}</span>
               </p>
-              <p className="italic">walker, runner, swimmer</p>
             </div>
           </div>
           <RecentActivity />
