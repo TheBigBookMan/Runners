@@ -105,6 +105,7 @@ const resolvers = {
       return true;
     },
     addAppName: async (parent, { appName }, { user }) => {
+      //TODO add in logic to not add if there is already that application in there
       const { id } = user;
       const updatedUser = await prisma.user.update({
         where: {
