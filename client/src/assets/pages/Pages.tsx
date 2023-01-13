@@ -8,6 +8,7 @@ import User from "./User";
 import Post from "./Post";
 import ListPosts from "./ListPosts";
 import Settings from "./Settings";
+import ConnectApp from "../components/feature/profilePage/ConnectApp";
 import Login from "./Login";
 import Signup from "./Signup";
 import UseUserContext from "../contexts/UserContext";
@@ -34,6 +35,7 @@ const Pages = () => {
             <Route path="groups" element={<Groups />} />
             <Route path="solo" element={<Solo />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="connect" element={<ConnectApp />} />
             <Route path="user" element={<User />} />
             <Route path="settings" element={<Settings />} />
             <Route path="post" element={<Post />} />
