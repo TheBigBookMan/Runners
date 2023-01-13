@@ -9,6 +9,8 @@ import {
 } from "../graphql/queries";
 import { useState, useEffect } from "react";
 import SyncLoader from "react-spinners/SyncLoader";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const hardcode = [
   {
@@ -165,6 +167,7 @@ const User = () => {
   useEffect(() => {
     if (followingUserData) {
       setIsFollowing(true);
+      notify("Following");
     }
   }, [followingUserData]);
 
@@ -172,6 +175,7 @@ const User = () => {
   useEffect(() => {
     if (unfollowedUserData) {
       setIsFollowing(false);
+      notify("Unfollowed");
     }
   }, [unfollowedUserData]);
 
@@ -197,12 +201,26 @@ const User = () => {
     unfollowUser({ variables: { id: userData?.id } });
   };
 
+  const notify = (word: string) => {
+    toast.success(`${word} user!`, {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   return (
     <div className="rounded-2xl shadow-md flex flex-col h-5/6 p-2 m-2 bg-orange-200">
       {loading ? (
         <h1 className="font-bold text-6xl text-orange-600">Loading...</h1>
       ) : (
         <>
+          <ToastContainer />
           <div className="flex gap-2 h-2/6">
             <img src={Me} className="h-28 w-28 rounded-xl" />
             <div className="flex flex-col h-5/6">
