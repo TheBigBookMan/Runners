@@ -3,6 +3,7 @@ import RecentActivity from "./RecentActivity";
 import { ME } from "../../../graphql/queries";
 import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 //? get user info from the context of the resolver and use that as a findUnique
 
@@ -20,9 +21,13 @@ const Bio = () => {
   //?? on the "connect to application" button, the user will get a choice for what app to connect to and then the authenitcation from that application will come up through API and user can connect and then it will show underneath with the database what they have connected to
 
   return (
-    <div className="rounded-2xl shadow-md flex flex-col h-3/6 p-2 bg-orange-200">
+    <div
+      className={`rounded-2xl shadow-md flex flex-col h-3/6 p-2 bg-orange-200 `}
+    >
       {!userInfo ? (
-        <h1 className="font-bold text-3xl text-center">Loading...</h1>
+        <h1 className="font-bold text-3xl text-center text-orange-500">
+          Loading...
+        </h1>
       ) : (
         <>
           <div className="flex gap-2">
@@ -31,25 +36,25 @@ const Bio = () => {
               <h1 className="font-bold text-orange-500 text-2xl">
                 {userInfo.username}
               </h1>
-              <p className="text-sm cursor-pointer underline">
+              <Link to="/connect" className="text-sm cursor-pointer underline">
                 Connect to application
-              </p>
+              </Link>
               <ul className="flex gap-1">
                 {userInfo.apps.map((app) => (
-                  <p
+                  <li
                     key={app}
                     className={`text-sm text-${
                       app === "Strava"
-                        ? "orange-600"
+                        ? "orange-500"
                         : app === "Nike Fit Club"
-                        ? "green-400"
+                        ? "lime-200"
                         : app === "Map My Run"
                         ? "sky-500"
                         : ""
                     } `}
                   >
                     {app}
-                  </p>
+                  </li>
                 ))}
               </ul>
               <p className="text-sm">
