@@ -41,7 +41,7 @@ const Friends = () => {
         {hardcode.map((item) => (
           <Link
             key={item.name}
-            to="/user"
+            to={`/user/${item.name}`}
             className="flex flex-col p-1 border-orange-400 border-b h-[50px] group hover:cursor-pointer hover:bg-orange-500 hover:rounded-lg"
           >
             <div className="flex justify-between">

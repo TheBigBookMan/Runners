@@ -36,9 +36,9 @@ const Pages = () => {
             <Route path="solo" element={<Solo />} />
             <Route path="profile" element={<Profile />} />
             <Route path="connect" element={<ConnectApp />} />
-            <Route path="user" element={<User />} />
+            <Route path="user/:userName" element={<User />} />
             <Route path="settings" element={<Settings />} />
-            <Route path="post" element={<Post />} />
+            <Route path="post/:postId" element={<Post />} />
             <Route path="listposts" element={<ListPosts />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />

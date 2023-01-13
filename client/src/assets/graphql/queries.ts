@@ -51,6 +51,7 @@ export const GET_SINGLE_USER = gql`
       id
       username
       joinedDate
+      apps
     }
   }
 `;
