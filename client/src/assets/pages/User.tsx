@@ -145,6 +145,7 @@ const User = () => {
   const { id } = useParams();
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserBio>();
+  const { data: myFriendsData } = useQuery(MY_FRIENDS);
   const { loading, data } = useQuery(GET_SINGLE_USER, {
     variables: { id },
   });
@@ -154,6 +155,18 @@ const User = () => {
     unfollowUser,
     { data: unfollowedUserData, loading: unfollowingLoading },
   ] = useMutation(UNFOLLOW_USER);
+
+  //? Checking the logged in users followingIds list to see if currently following this user
+  useEffect(() => {
+    if (myFriendsData) {
+      const { followingIDs } = myFriendsData.me;
+      if (followingIDs.includes(id)) {
+        setIsFollowing(true);
+      } else {
+        setIsFollowing(false);
+      }
+    }
+  }, [myFriendsData]);
 
   //? Creates the users information on data load from the mutation to get user info
   useEffect(() => {
@@ -204,7 +217,7 @@ const User = () => {
   const notify = (word: string) => {
     toast.success(`${word} user!`, {
       position: "top-left",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
