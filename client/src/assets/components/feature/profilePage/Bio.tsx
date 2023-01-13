@@ -46,7 +46,7 @@ const Bio = () => {
                     className={`text-sm text-${
                       app === "Strava"
                         ? "orange-500"
-                        : app === "Nike Fit Club"
+                        : app === "Nike Training Club"
                         ? "lime-200"
                         : app === "Map My Run"
                         ? "sky-500"

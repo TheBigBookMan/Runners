@@ -54,3 +54,11 @@ export const GET_SINGLE_USER = gql`
     }
   }
 `;
+
+export const ADD_APPLICATION = gql`
+  mutation AddApplication($appName: String!) {
+    addAppName(appName: $appName) {
+      apps
+    }
+  }
+`;
