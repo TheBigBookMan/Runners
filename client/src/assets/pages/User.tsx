@@ -190,14 +190,12 @@ const User = () => {
   //TODO add in toaster for when follow successful etc and when invite successful
 
   const follow = (): void => {
-    followUser({ variables: { username: userData?.username } });
+    followUser({ variables: { id: userData?.id } });
   };
 
   const unfollow = (): void => {
-    unfollowUser({ variables: { username: userData?.username } });
+    unfollowUser({ variables: { id: userData?.id } });
   };
-
-  console.log(followingUserData);
 
   return (
     <div className="rounded-2xl shadow-md flex flex-col h-5/6 p-2 m-2 bg-orange-200">

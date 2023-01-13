@@ -31,8 +31,8 @@ const typeDefs = gql`
     login(username: String!, password: String!): Auth
     logout: Boolean
     addAppName(appName: String!): User
-    followUser(username: String!): User
-    unfollowUser(username: String!): User
+    followUser(id: ID!): User
+    unfollowUser(id: ID!): User
   }
 `;
 

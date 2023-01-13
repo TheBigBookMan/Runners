@@ -18,6 +18,7 @@ declare global {
   }
 
   interface UserBio {
+    id: string;
     username: string;
     joinedDate: string;
     apps: [string];

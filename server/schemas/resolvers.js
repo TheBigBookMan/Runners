@@ -118,20 +118,20 @@ const resolvers = {
       });
       return updatedUser;
     },
-    followUser: async (parent, { username }, { user }) => {
-      const { id } = user;
+    followUser: async (parent, { id }, { user }) => {
+      const userId = user.id;
       const followedByUser = await prisma.user.update({
         where: {
-          username,
+          id,
         },
         data: {
-          followedByIDs: { push: id },
+          followedByIDs: { push: userId },
         },
       });
 
       const followingUser = await prisma.user.update({
         where: {
-          id,
+          id: userId,
         },
         data: {
           followingIDs: { push: followedByUser.id },
@@ -140,12 +140,12 @@ const resolvers = {
 
       return followingUser;
     },
-    unfollowUser: async (parent, { username }, { user }) => {
-      const { id } = user;
+    unfollowUser: async (parent, { id }, { user }) => {
+      const userId = user.id;
       //? Find the user they are following and get their list of followedByIDs
       const followedByUser = await prisma.user.findUnique({
         where: {
-          username,
+          id,
         },
       });
       const followedByIDs = await followedByUser.followedByIDs;
@@ -153,11 +153,11 @@ const resolvers = {
       //? Update the followedByIDs list with a filter !== id
       await prisma.user.update({
         where: {
-          username,
+          id,
         },
         data: {
           followedByIDs: {
-            set: followedByIDs.filter((userId) => userId !== id),
+            set: followedByIDs.filter((usersId) => usersId !== userId),
           },
         },
       });
@@ -165,7 +165,7 @@ const resolvers = {
       //? Find the context user and get their list of followingIDs
       const followingUser = await prisma.user.findUnique({
         where: {
-          id,
+          id: userId,
         },
       });
       const followingIDs = await followingUser.followingIDs;
@@ -173,12 +173,12 @@ const resolvers = {
       //? Update the followingIDs list with a filter !== followedByUser.id
       const updatedUser = await prisma.user.update({
         where: {
-          id,
+          id: userId,
         },
         data: {
           followingIDs: {
             set: followingIDs.filter(
-              (followingUserId) => followingUserId !== followedByUser.id
+              (followingUserId) => followingUserId !== id
             ),
           },
         },

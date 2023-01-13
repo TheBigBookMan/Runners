@@ -81,8 +81,8 @@ export const ADD_APPLICATION = gql`
 
 //? Following another user
 export const FOLLOW_USER = gql`
-  mutation FollowUser($username: String!) {
-    followUser(username: $username) {
+  mutation FollowUser($id: ID!) {
+    followUser(id: $id) {
       followedByIDs
       followingIDs
     }
@@ -91,8 +91,8 @@ export const FOLLOW_USER = gql`
 
 //? Unfollow another user
 export const UNFOLLOW_USER = gql`
-  mutation UnfollowUser($username: String!) {
-    unfollowUser(username: $username) {
+  mutation UnfollowUser($id: ID!) {
+    unfollowUser(id: $id) {
       followedByIDs
       followingIDs
     }

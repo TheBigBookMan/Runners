@@ -25,6 +25,7 @@ import { setContext } from "@apollo/client/link/context";
 
 //TODO add in a friends counter somewhere
 //TODO add in a friends list page?
+//TODO will need to add in a asearch bar for users to search other users and group names
 
 const httpLink = createHttpLink({
   uri: "http://localhost:3001/graphql",
