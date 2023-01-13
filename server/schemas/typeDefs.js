@@ -9,8 +9,8 @@ const typeDefs = gql`
     password: String
     joinedDate: DateTime
     apps: [String]
-    followedByIDs: [ID]
-    followingIDs: [ID]
+    followedByIDs: [String]
+    followingIDs: [String]
   }
 
   type Auth {

@@ -43,7 +43,7 @@ const GroupMembers = () => {
         <ul className="flex flex-col gap-1 h-[100px] w-full overflow-y-scroll">
           {fake.map((person) => (
             <Link
-              to="/user"
+              to={`/user/${person.name}`}
               className="flex gap-1 items-center hover:bg-orange-200 hover:rounded-xl p-1"
             >
               <img

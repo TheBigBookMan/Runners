@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+//? User provide username and password to signup
 export const SIGNUP = gql`
   mutation AddUser($username: String!, $password: String!) {
     addUser(username: $username, password: $password) {
@@ -14,6 +15,7 @@ export const SIGNUP = gql`
   }
 `;
 
+//? User provide username and password to login
 export const LOGIN = gql`
   mutation Login($username: String!, $password: String!) {
     login(username: $username, password: $password) {
@@ -27,12 +29,14 @@ export const LOGIN = gql`
   }
 `;
 
+//? Logout
 export const LOGOUT = gql`
   mutation Logout {
     logout
   }
 `;
 
+//? Query the user logged in based off context
 export const ME = gql`
   query Me {
     me {
@@ -56,10 +60,21 @@ export const GET_SINGLE_USER = gql`
   }
 `;
 
+//? Add an application name to the database upon OAuth confirmation
 export const ADD_APPLICATION = gql`
   mutation AddApplication($appName: String!) {
     addAppName(appName: $appName) {
       apps
+    }
+  }
+`;
+
+//? Following another user
+export const FOLLOW_USER = gql`
+  mutation FollowUser($username: String!) {
+    followUser(username: $username) {
+      followedByIDs
+      followingIDs
     }
   }
 `;

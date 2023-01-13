@@ -11,8 +11,6 @@ import { setContext } from "@apollo/client/link/context";
 // * running application where import strava data on runs
 // https://developers.strava.com/docs/reference/
 
-//* have user login and have friends
-
 //* create specific groups with people
 
 //* strava API gets the users logged runs everyday and uploads the data to the page
@@ -24,6 +22,9 @@ import { setContext } from "@apollo/client/link/context";
 //* if wanted to take step further, add in crypto wallet and smart contracts so users can actually put friendly wages on and automatically gets transacted
 
 //* database use MongoDB because not relational, just adding running data and then comparing to others
+
+//TODO add in a friends counter somewhere
+//TODO add in a friends list page?
 
 const httpLink = createHttpLink({
   uri: "http://localhost:3001/graphql",

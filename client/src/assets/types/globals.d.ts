@@ -21,6 +21,8 @@ declare global {
     username: string;
     joinedDate: string;
     apps: [string];
+    followedByIDs: [string];
+    followingIDs: [string];
   }
 
   interface Prototypes {

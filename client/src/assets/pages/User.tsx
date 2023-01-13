@@ -1,7 +1,7 @@
 import Me from "../images/Me.jpg";
 import { Link, useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { GET_SINGLE_USER } from "../graphql/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_SINGLE_USER, FOLLOW_USER } from "../graphql/queries";
 import { useState, useEffect } from "react";
 
 const hardcode = [
@@ -135,10 +135,13 @@ const hardcode = [
 
 const User = () => {
   const { userName } = useParams();
+  const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserBio>();
   const { loading, data } = useQuery(GET_SINGLE_USER, {
     variables: { username: userName },
   });
+  const [followUser, { data: followingUserData, loading: followLoading }] =
+    useMutation(FOLLOW_USER);
 
   useEffect(() => {
     const userBio = data?.singleUser;
@@ -147,12 +150,26 @@ const User = () => {
     }
   }, [data]);
 
+  //** do a useEffect that looks through the ME query to find if users are already being followed by the user */
+
   //TODO addin add friend, invite buttons and have a isFriend conditional for the buttons
 
-  //! TEMP ISFRIEND VARIABLE
-  let isFriend = true;
+  //TODO for the conditional rendering of the follow/unfollow buttons have the API call check for followindId and then render relational to that
 
-  const addFriend = (): void => {};
+  //TODO for the "invite to group" make the API call check if the user is following you as well with followedById so it's like a friendship type of thing and can have a conditional render of nothing
+
+  //TODO make it so if you are following the user then you can see their recent activity
+
+  //TODO add in an unfollow user button
+
+  //TODO add in toaster for when follow successful etc and when invite successful
+
+  const addFriend = (): void => {
+    followUser({ variables: { username: userData?.username } });
+    setIsFollowing(true);
+  };
+
+  console.log(followingUserData);
 
   return (
     <div className="rounded-2xl shadow-md flex flex-col h-5/6 p-2 m-2 bg-orange-200">
@@ -229,10 +246,10 @@ const User = () => {
               ))}
             </ul>
             <div className="flex gap-4 justify-center">
-              {isFriend ? (
+              {isFollowing ? (
                 <>
                   <button className="w-[140px] h-[50px] bg-orange-500 flex items-center justify-center rounded-xl font-bold text-orange-200 hover:bg-orange-600">
-                    Remove friend
+                    Unfollow
                   </button>
                   <button className="w-[140px] h-[50px] bg-orange-500 flex items-center justify-center rounded-xl font-bold text-orange-200 hover:bg-orange-600">
                     Invite to group
@@ -243,7 +260,7 @@ const User = () => {
                   onClick={(): void => addFriend()}
                   className="w-[100px] h-[50px] bg-orange-500 flex items-center justify-center rounded-xl font-bold text-orange-200 hover:bg-orange-600"
                 >
-                  Add friend
+                  Follow
                 </button>
               )}
             </div>

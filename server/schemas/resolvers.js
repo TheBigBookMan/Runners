@@ -138,7 +138,7 @@ const resolvers = {
         },
       });
 
-      return user;
+      return followingUser;
     },
   },
 };
