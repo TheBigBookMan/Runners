@@ -39,6 +39,7 @@ const resolvers = {
       return prisma.user.findMany();
     },
     singleUser: async (parent, { username }, context) => {
+      //TODO will have to use context to check if they are in your followedBy array and then send back a true or false to render out the follow/unfollow buttons
       const user = await prisma.user.findUnique({
         where: {
           username,
@@ -116,6 +117,28 @@ const resolvers = {
         },
       });
       return updatedUser;
+    },
+    followUser: async (parent, { username }, { user }) => {
+      const { id } = user;
+      const followedByUser = await prisma.user.update({
+        where: {
+          username,
+        },
+        data: {
+          followedByIDs: { push: id },
+        },
+      });
+
+      const followingUser = await prisma.user.update({
+        where: {
+          id,
+        },
+        data: {
+          followingIDs: { push: followedByUser.id },
+        },
+      });
+
+      return user;
     },
   },
 };

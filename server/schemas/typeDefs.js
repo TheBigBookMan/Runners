@@ -9,6 +9,8 @@ const typeDefs = gql`
     password: String
     joinedDate: DateTime
     apps: [String]
+    followedByIDs: [ID]
+    followingIDs: [ID]
   }
 
   type Auth {
@@ -17,9 +19,11 @@ const typeDefs = gql`
   }
 
   type Query {
+    me: User
     singleUser(username: String!): User
     allUsers: [User]
-    me: User
+    following: [User]
+    followedBy: [User]
   }
 
   type Mutation {
@@ -27,6 +31,7 @@ const typeDefs = gql`
     login(username: String!, password: String!): Auth
     logout: Boolean
     addAppName(appName: String!): User
+    followUser(username: String!): User
   }
 `;
 

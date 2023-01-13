@@ -24,14 +24,17 @@ model User {
   joinedDate DateTime @default(now())
   apps String[]
   // profilePic String?
-  // location String[]
+  // location String
+  followedBy    User[]   @relation("UserFollows", fields: [followedByIDs], references: [id])
+  followedByIDs String[] @db.ObjectId
+  following     User[]   @relation("UserFollows", fields: [followingIDs], references: [id])
+  followingIDs  String[] @db.ObjectId
  
   // groupId String[] @db.ObjectId
   // groups Group[] @relation(fields: [groupId], references: [id])
   // activityTypes ActivityType[]
   // activities Activity[]
-  // friendIds String[] @db.ObjectId
-  // friends User[] @relation("friends", fields: [friendIds])
+  
 }
 
 //* (total time, total distance, average pace) FOR EACH ACTIVITY TYPE AND APP-- maybe each activity ID from the application so easier to call???
