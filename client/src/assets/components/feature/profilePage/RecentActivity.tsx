@@ -8,7 +8,7 @@ const hardcode = [
     time: 34,
   },
   {
-    app: "Nike Fit Club",
+    app: "Nike Training Club",
     activity: "swim",
     distance: 4,
     time: 84,
@@ -51,7 +51,7 @@ const RecentActivity = () => {
             className={`border-b border-orange-400 flex h-[60px] pl-2 items-center justify-between group hover:rounded-lg cursor-pointer ${
               event.app === "Strava"
                 ? "hover:bg-orange-300"
-                : event.app === "Nike Fit Club"
+                : event.app === "Nike Training Club"
                 ? "hover:bg-lime-500"
                 : event.app === "Map My Run"
                 ? "hover:bg-sky-300"
@@ -62,7 +62,7 @@ const RecentActivity = () => {
               className={`font-bold ${
                 event.app === "Strava"
                   ? "text-orange-600"
-                  : event.app === "Nike Fit Club"
+                  : event.app === "Nike Training Club"
                   ? "text-lime-200"
                   : event.app === "Map My Run"
                   ? "text-sky-600"
