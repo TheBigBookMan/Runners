@@ -2,31 +2,37 @@ import { Link } from "react-router-dom";
 
 const hardcode = [
   {
+    id: "63c0f2ca1d019372b4e4c8a9",
     name: "Anymamacita",
     apps: ["Strava", "NRC"],
     activities: ["runner", "biker"],
   },
   {
+    id: "63c0f2ca1d019372b4e4c8a9",
     name: "Justina",
     apps: ["Strava", "NRC", "MMR"],
     activities: ["runner", "biker", "swimmer"],
   },
   {
+    id: "63c0f2ca1d019372b4e4c8a9",
     name: "Nobody",
     apps: ["NRC"],
     activities: ["biker"],
   },
   {
+    id: "63c0f2ca1d019372b4e4c8a9",
     name: "Anymamacitas",
     apps: ["Strava", "NRC"],
     activities: ["runner", "biker"],
   },
   {
+    id: "63c0f2ca1d019372b4e4c8a9",
     name: "Anymamacitad",
     apps: ["Strava", "NRC"],
     activities: ["runner", "biker"],
   },
   {
+    id: "63c0f2ca1d019372b4e4c8a9",
     name: "Anymamacitaf",
     apps: ["Strava", "NRC"],
     activities: ["runner", "biker"],
@@ -41,7 +47,7 @@ const Friends = () => {
         {hardcode.map((item) => (
           <Link
             key={item.name}
-            to={`/user/${item.name}`}
+            to={`/user/${item.id}`}
             className="flex flex-col p-1 border-orange-400 border-b h-[50px] group hover:cursor-pointer hover:bg-orange-500 hover:rounded-lg"
           >
             <div className="flex justify-between">

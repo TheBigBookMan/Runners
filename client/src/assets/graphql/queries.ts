@@ -48,10 +48,20 @@ export const ME = gql`
   }
 `;
 
+//? Get user logged in following and followers
+export const MY_FRIENDS = gql`
+  query MyFriends {
+    me {
+      followedByIDs
+      followingIDs
+    }
+  }
+`;
+
 //?? just temp, will probably have this for when clicking on user profile
 export const GET_SINGLE_USER = gql`
-  query getSingleUser($username: String!) {
-    singleUser(username: $username) {
+  query getSingleUser($id: ID!) {
+    singleUser(id: $id) {
       id
       username
       joinedDate

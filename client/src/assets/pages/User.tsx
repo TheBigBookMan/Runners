@@ -5,6 +5,7 @@ import {
   GET_SINGLE_USER,
   FOLLOW_USER,
   UNFOLLOW_USER,
+  MY_FRIENDS,
 } from "../graphql/queries";
 import { useState, useEffect } from "react";
 import SyncLoader from "react-spinners/SyncLoader";
@@ -139,11 +140,11 @@ const hardcode = [
 ];
 
 const User = () => {
-  const { userName } = useParams();
+  const { id } = useParams();
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserBio>();
   const { loading, data } = useQuery(GET_SINGLE_USER, {
-    variables: { username: userName },
+    variables: { id },
   });
   const [followUser, { data: followingUserData, loading: followLoading }] =
     useMutation(FOLLOW_USER);

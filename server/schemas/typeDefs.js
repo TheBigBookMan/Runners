@@ -20,7 +20,7 @@ const typeDefs = gql`
 
   type Query {
     me: User
-    singleUser(username: String!): User
+    singleUser(id: ID!): User
     allUsers: [User]
     following: [User]
     followedBy: [User]
