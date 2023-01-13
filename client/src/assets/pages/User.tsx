@@ -1,8 +1,13 @@
 import Me from "../images/Me.jpg";
 import { Link, useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_SINGLE_USER, FOLLOW_USER } from "../graphql/queries";
+import {
+  GET_SINGLE_USER,
+  FOLLOW_USER,
+  UNFOLLOW_USER,
+} from "../graphql/queries";
 import { useState, useEffect } from "react";
+import SyncLoader from "react-spinners/SyncLoader";
 
 const hardcode = [
   {
@@ -142,13 +147,32 @@ const User = () => {
   });
   const [followUser, { data: followingUserData, loading: followLoading }] =
     useMutation(FOLLOW_USER);
+  const [
+    unfollowUser,
+    { data: unfollowedUserData, loading: unfollowingLoading },
+  ] = useMutation(UNFOLLOW_USER);
 
+  //? Creates the users information on data load from the mutation to get user info
   useEffect(() => {
     const userBio = data?.singleUser;
     if (userBio) {
       setUserData(userBio);
     }
   }, [data]);
+
+  //? When following a user data changes then sets isFollowing to true
+  useEffect(() => {
+    if (followingUserData) {
+      setIsFollowing(true);
+    }
+  }, [followingUserData]);
+
+  //? When unfollowing a user data changes then sets isFollowing to false
+  useEffect(() => {
+    if (unfollowedUserData) {
+      setIsFollowing(false);
+    }
+  }, [unfollowedUserData]);
 
   //** do a useEffect that looks through the ME query to find if users are already being followed by the user */
 
@@ -164,9 +188,12 @@ const User = () => {
 
   //TODO add in toaster for when follow successful etc and when invite successful
 
-  const addFriend = (): void => {
+  const follow = (): void => {
     followUser({ variables: { username: userData?.username } });
-    setIsFollowing(true);
+  };
+
+  const unfollow = (): void => {
+    unfollowUser({ variables: { username: userData?.username } });
   };
 
   console.log(followingUserData);
@@ -248,8 +275,18 @@ const User = () => {
             <div className="flex gap-4 justify-center">
               {isFollowing ? (
                 <>
-                  <button className="w-[140px] h-[50px] bg-orange-500 flex items-center justify-center rounded-xl font-bold text-orange-200 hover:bg-orange-600">
-                    Unfollow
+                  <button
+                    onClick={(): void => unfollow()}
+                    className="w-[140px] h-[50px] bg-orange-500 flex items-center justify-center rounded-xl font-bold text-orange-200 hover:bg-orange-600"
+                  >
+                    {unfollowingLoading ? (
+                      <SyncLoader
+                        color="#e3bca8"
+                        loading={unfollowingLoading}
+                      />
+                    ) : (
+                      "Unfollow"
+                    )}
                   </button>
                   <button className="w-[140px] h-[50px] bg-orange-500 flex items-center justify-center rounded-xl font-bold text-orange-200 hover:bg-orange-600">
                     Invite to group
@@ -257,10 +294,14 @@ const User = () => {
                 </>
               ) : (
                 <button
-                  onClick={(): void => addFriend()}
+                  onClick={(): void => follow()}
                   className="w-[100px] h-[50px] bg-orange-500 flex items-center justify-center rounded-xl font-bold text-orange-200 hover:bg-orange-600"
                 >
-                  Follow
+                  {followLoading ? (
+                    <SyncLoader color="#e3bca8" loading={followLoading} />
+                  ) : (
+                    "Follow"
+                  )}
                 </button>
               )}
             </div>

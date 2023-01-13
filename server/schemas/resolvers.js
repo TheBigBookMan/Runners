@@ -140,6 +140,52 @@ const resolvers = {
 
       return followingUser;
     },
+    unfollowUser: async (parent, { username }, { user }) => {
+      const { id } = user;
+      //? Find the user they are following and get their list of followedByIDs
+      const followedByUser = await prisma.user.findUnique({
+        where: {
+          username,
+        },
+      });
+      const followedByIDs = await followedByUser.followedByIDs;
+
+      //? Update the followedByIDs list with a filter !== id
+      await prisma.user.update({
+        where: {
+          username,
+        },
+        data: {
+          followedByIDs: {
+            set: followedByIDs.filter((userId) => userId !== id),
+          },
+        },
+      });
+
+      //? Find the context user and get their list of followingIDs
+      const followingUser = await prisma.user.findUnique({
+        where: {
+          id,
+        },
+      });
+      const followingIDs = await followingUser.followingIDs;
+
+      //? Update the followingIDs list with a filter !== followedByUser.id
+      const updatedUser = await prisma.user.update({
+        where: {
+          id,
+        },
+        data: {
+          followingIDs: {
+            set: followingIDs.filter(
+              (followingUserId) => followingUserId !== followedByUser.id
+            ),
+          },
+        },
+      });
+
+      return updatedUser;
+    },
   },
 };
 

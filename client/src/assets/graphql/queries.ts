@@ -78,3 +78,13 @@ export const FOLLOW_USER = gql`
     }
   }
 `;
+
+//? Unfollow another user
+export const UNFOLLOW_USER = gql`
+  mutation UnfollowUser($username: String!) {
+    unfollowUser(username: $username) {
+      followedByIDs
+      followingIDs
+    }
+  }
+`;
