@@ -1,12 +1,17 @@
 import { applications } from "../../../utils/applications";
 import { ADD_APPLICATION } from "../../../graphql/queries";
 import { useMutation } from "@apollo/client";
+import { stravaAPI } from "../../../hooks/StravaAPI";
 
 // TODO This will be an add activity to database component and where the OAuth will happen once click on an app to link to the user will then be taken to the page to connect up their account and once that is PROPERLY DONE then the name is added to the database of the user
 
 const ConnectApp = () => {
   const [addApplicationMutation, { data: appData, loading }] =
     useMutation(ADD_APPLICATION);
+
+  const callAPI = (): void => {
+    stravaAPI();
+  };
 
   // TODO add in the usemutation to add the application to the users app list
 
@@ -21,6 +26,7 @@ const ConnectApp = () => {
             // onClick={() =>
             //   addApplicationMutation({ variables: { appName: app.name } })
             // }
+            onClick={(): void => callAPI()}
             key={app.name}
             className={`flex justify-between border-b p-2 cursor-pointer  hover:rounded-lg transition-all ${
               app.name === "Strava"
