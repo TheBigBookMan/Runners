@@ -22,6 +22,10 @@ declare global {
     username: string;
     joinedDate: string;
     apps: [string];
+    profilePic: string;
+    stravaID: string;
+    NTCID: string;
+    MMRID: string;
     followedByIDs: [string];
     followingIDs: [string];
   }
