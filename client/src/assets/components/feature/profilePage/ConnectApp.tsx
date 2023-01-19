@@ -1,5 +1,4 @@
 import { applications } from "../../../utils/applications";
-import { ADD_APPLICATION } from "../../../graphql/queries";
 import { useMutation } from "@apollo/client";
 import { stravaAPI, stravaAuthToken } from "../../../hooks/StravaAPI";
 import { useSearchParams } from "react-router-dom";
@@ -8,8 +7,6 @@ import { useEffect } from "react";
 // TODO This will be an add activity to database component and where the OAuth will happen once click on an app to link to the user will then be taken to the page to connect up their account and once that is PROPERLY DONE then the name is added to the database of the user
 
 const ConnectApp = () => {
-  const [addApplicationMutation, { data: appData, loading }] =
-    useMutation(ADD_APPLICATION);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const data = searchParams.get("code");
@@ -31,9 +28,6 @@ const ConnectApp = () => {
       <ul className="flex flex-col gap-2 p-2 h-full overflow-y-auto">
         {applications.map((app) => (
           <li
-            // onClick={() =>
-            //   addApplicationMutation({ variables: { appName: app.name } })
-            // }
             onClick={(): void =>
               window.location.replace(
                 "http://www.strava.com/oauth/authorize?client_id=99017&response_type=code&redirect_uri=http://localhost:5173/connect/exchange_token&approval_prompt=force&scope=activity:read_all"

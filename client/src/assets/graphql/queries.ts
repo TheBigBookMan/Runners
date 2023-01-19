@@ -44,6 +44,7 @@ export const ME = gql`
       username
       joinedDate
       apps
+      profilePic
     }
   }
 `;
@@ -70,10 +71,14 @@ export const GET_SINGLE_USER = gql`
   }
 `;
 
-//? Add an application name to the database upon OAuth confirmation
-export const ADD_APPLICATION = gql`
-  mutation AddApplication($appName: String!) {
-    addAppName(appName: $appName) {
+export const ADD_AUTH_USER = gql`
+  mutation AddAuthUserInfo($profilePic: String, $appId: String) {
+    addAuthUserInfo(profilePic: $profilePic, appID: $appId) {
+      profilePic
+      stravaID
+      NTCID
+      MMRID
+      id
       apps
     }
   }
