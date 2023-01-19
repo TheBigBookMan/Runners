@@ -9,6 +9,10 @@ const typeDefs = gql`
     password: String
     joinedDate: DateTime
     apps: [String]
+    profilePic: String
+    stravaID: String
+    NTCID: String
+    MMRID: String
     followedByIDs: [String]
     followingIDs: [String]
   }
@@ -31,6 +35,7 @@ const typeDefs = gql`
     login(username: String!, password: String!): Auth
     logout: Boolean
     addAppName(appName: String!): User
+    addAuthUserInfo(profilePic: String, appID: String): User
     followUser(id: ID!): User
     unfollowUser(id: ID!): User
   }

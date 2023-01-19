@@ -23,7 +23,10 @@ model User {
   password   String
   joinedDate DateTime @default(now())
   apps String[]
-  // profilePic String?
+  profilePic String?
+  stravaID String?
+  NTCID String?
+  MMRID String?
   // location String
   followedBy    User[]   @relation("UserFollows", fields: [followedByIDs], references: [id])
   followedByIDs String[] @db.ObjectId
