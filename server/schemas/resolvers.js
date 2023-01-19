@@ -118,6 +118,44 @@ const resolvers = {
       });
       return updatedUser;
     },
+    addAuthUserInfo: async (parent, { profilePic, appID }, { user }) => {
+      const { id } = user;
+      const newerSplit = appID.split(" ");
+      const idNum = newerSplit[1];
+      let appName;
+
+      if (newerSplit[0] === "Strava") {
+        appName = "Strava";
+        stravaID = idNum;
+        const updatedUser = await prisma.user.update({
+          where: {
+            id,
+          },
+          data: { profilePic, stravaID, apps: { push: appName } },
+        });
+        return updatedUser;
+      } else if (newerSplit[0] === "NTC") {
+        appName = "Nike Training Club";
+        NTCID = idNum;
+        const updatedUser = await prisma.user.update({
+          where: {
+            id,
+          },
+          data: { profilePic, NTCID, apps: { push: appName } },
+        });
+        return updatedUser;
+      } else if (newerSplit[0] === "MMRID") {
+        appName = "Map My Run";
+        MMRID = idNum;
+        const updatedUser = await prisma.user.update({
+          where: {
+            id,
+          },
+          data: { profilePic, MMRID, apps: { push: appName } },
+        });
+        return updatedUser;
+      }
+    },
     followUser: async (parent, { id }, { user }) => {
       const userId = user.id;
       const followedByUser = await prisma.user.update({
