@@ -1,4 +1,6 @@
 import axios from "axios";
+import { ADD_AUTH_USER } from "../graphql/queries";
+import { useMutation } from "@apollo/client";
 
 // * strava API call
 
@@ -56,6 +58,7 @@ export const stravaAPI = async () => {
 
 //? Function that gets the auth code to then get the access code
 export const stravaAuthToken = async (code: string) => {
+  const [addAuth, { data: userAuthData, loading }] = useMutation(ADD_AUTH_USER);
   try {
     const { data } = await axios.post("https://www.strava.com/oauth/token", {
       client_id: clientID,
@@ -64,7 +67,14 @@ export const stravaAuthToken = async (code: string) => {
     });
     // console.log(data);
     const athleteInfo = data.athlete;
-    console.log(athleteInfo);
+    const profilePic = athleteInfo.profile_medium;
+    const appID = `Strava ${athleteInfo.id.toString()}`;
+    await addAuth({
+      variables: {
+        profilePic,
+        appID,
+      },
+    });
     const accessToken = data.access_token;
     getActivities(accessToken);
     return data;

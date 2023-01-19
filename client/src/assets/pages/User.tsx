@@ -235,7 +235,7 @@ const User = () => {
         <>
           <ToastContainer />
           <div className="flex gap-2 h-2/6">
-            <img src={Me} className="h-28 w-28 rounded-xl" />
+            <img src={userData?.profilePic} className="h-28 w-28 rounded-xl" />
             <div className="flex flex-col h-5/6">
               <h1 className="font-bold text-orange-500 text-2xl">
                 {userData?.username}

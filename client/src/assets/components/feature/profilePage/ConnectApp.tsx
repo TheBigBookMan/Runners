@@ -1,5 +1,6 @@
 import { applications } from "../../../utils/applications";
 import { useMutation } from "@apollo/client";
+import { ADD_AUTH_USER } from "../../../graphql/queries";
 import { stravaAPI, stravaAuthToken } from "../../../hooks/StravaAPI";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";

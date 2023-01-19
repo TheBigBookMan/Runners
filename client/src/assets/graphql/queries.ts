@@ -66,14 +66,16 @@ export const GET_SINGLE_USER = gql`
       id
       username
       joinedDate
+      profilePic
       apps
     }
   }
 `;
 
+//? Gets info on authenticated user after they authenticate with an app
 export const ADD_AUTH_USER = gql`
-  mutation AddAuthUserInfo($profilePic: String, $appId: String) {
-    addAuthUserInfo(profilePic: $profilePic, appID: $appId) {
+  mutation AddAuthUserInfo($profilePic: String, $appID: String) {
+    addAuthUserInfo(profilePic: $profilePic, appID: $appID) {
       profilePic
       stravaID
       NTCID
