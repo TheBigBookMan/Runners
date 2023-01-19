@@ -62,9 +62,12 @@ export const stravaAuthToken = async (code: string) => {
       client_secret: clientSecret,
       code,
     });
-    console.log(data);
+    // console.log(data);
+    const athleteInfo = data.athlete;
+    console.log(athleteInfo);
     const accessToken = data.access_token;
     getActivities(accessToken);
+    return data;
   } catch (err) {
     console.log(err);
   }
