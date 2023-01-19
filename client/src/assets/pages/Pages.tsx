@@ -35,6 +35,7 @@ const Pages = () => {
             <Route path="groups" element={<Groups />} />
             <Route path="solo" element={<Solo />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="connect/:string" element={<ConnectApp />} />
             <Route path="connect" element={<ConnectApp />} />
             <Route path="user/:id" element={<User />} />
             <Route path="settings" element={<Settings />} />
