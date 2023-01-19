@@ -1,17 +1,25 @@
 import { applications } from "../../../utils/applications";
 import { ADD_APPLICATION } from "../../../graphql/queries";
 import { useMutation } from "@apollo/client";
-import { stravaAPI } from "../../../hooks/StravaAPI";
+import { stravaAPI, stravaAuthToken } from "../../../hooks/StravaAPI";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 // TODO This will be an add activity to database component and where the OAuth will happen once click on an app to link to the user will then be taken to the page to connect up their account and once that is PROPERLY DONE then the name is added to the database of the user
 
 const ConnectApp = () => {
   const [addApplicationMutation, { data: appData, loading }] =
     useMutation(ADD_APPLICATION);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const callAPI = (): void => {
-    stravaAPI();
-  };
+  const data = searchParams.get("code");
+  if (data) {
+    stravaAuthToken(data);
+  }
+
+  // const callAPI = (): void => {
+  //   stravaAPI();
+  // };
 
   // TODO add in the usemutation to add the application to the users app list
 
@@ -26,7 +34,11 @@ const ConnectApp = () => {
             // onClick={() =>
             //   addApplicationMutation({ variables: { appName: app.name } })
             // }
-            onClick={(): void => callAPI()}
+            onClick={(): void =>
+              window.location.replace(
+                "http://www.strava.com/oauth/authorize?client_id=99017&response_type=code&redirect_uri=http://localhost:5173/connect/exchange_token&approval_prompt=force&scope=activity:read_all"
+              )
+            }
             key={app.name}
             className={`flex justify-between border-b p-2 cursor-pointer  hover:rounded-lg transition-all ${
               app.name === "Strava"
