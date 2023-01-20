@@ -1,25 +1,39 @@
 import { applications } from "../../../utils/applications";
-import { useMutation } from "@apollo/client";
-import { ADD_AUTH_USER } from "../../../graphql/queries";
-import { stravaAPI, stravaAuthToken } from "../../../hooks/StravaAPI";
+import { useQuery } from "@apollo/client";
+import { ME } from "../../../graphql/queries";
+import { stravaAuthToken } from "../../../hooks/StravaAPI";
 import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // TODO This will be an add activity to database component and where the OAuth will happen once click on an app to link to the user will then be taken to the page to connect up their account and once that is PROPERLY DONE then the name is added to the database of the user
 
 const ConnectApp = () => {
+  const [userApps, setUserApps] = useState<string[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { data: meInfo } = useQuery(ME);
+
+  useEffect(() => {
+    if (meInfo) {
+      const { apps } = meInfo?.me;
+      setUserApps(apps);
+    }
+  }, [meInfo]);
 
   const data = searchParams.get("code");
   if (data) {
     stravaAuthToken(data);
   }
 
-  // const callAPI = (): void => {
-  //   stravaAPI();
-  // };
-
-  // TODO add in the usemutation to add the application to the users app list
+  const checkUserAuth = (appName: string) => {
+    if (!userApps.includes(appName)) {
+      if (appName === "Strava")
+        window.location.replace(
+          "http://www.strava.com/oauth/authorize?client_id=99017&response_type=code&redirect_uri=http://localhost:5173/connect/exchange_token&approval_prompt=force&scope=activity:read_all"
+        );
+    } else {
+      alert(`${appName} already authorized`);
+    }
+  };
 
   return (
     <div className="rounded-2xl shadow-md flex flex-col h-5/6 p-2 bg-orange-200 m-2">
@@ -29,11 +43,7 @@ const ConnectApp = () => {
       <ul className="flex flex-col gap-2 p-2 h-full overflow-y-auto">
         {applications.map((app) => (
           <li
-            onClick={(): void =>
-              window.location.replace(
-                "http://www.strava.com/oauth/authorize?client_id=99017&response_type=code&redirect_uri=http://localhost:5173/connect/exchange_token&approval_prompt=force&scope=activity:read_all"
-              )
-            }
+            onClick={(): void => checkUserAuth("Strava")}
             key={app.name}
             className={`flex justify-between border-b p-2 cursor-pointer  hover:rounded-lg transition-all ${
               app.name === "Strava"
