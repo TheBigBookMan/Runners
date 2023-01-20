@@ -59,6 +59,7 @@ export const Provider = ({ children }: Prototypes) => {
       await signUpMutation({ variables: { ...newUser } });
       nav("/");
     } catch (error) {
+      alert("That didn't work, please try again");
       console.log(error);
       return error;
     }
@@ -76,8 +77,8 @@ export const Provider = ({ children }: Prototypes) => {
       await loginMutation({ variables: { username, password } });
       nav("/");
     } catch (error) {
+      alert("Credentials incorrect, please try again");
       console.log(error);
-      // throw Error("not work");
       return error;
     }
   };

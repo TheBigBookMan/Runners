@@ -13,12 +13,7 @@ const clientID = "99017";
 const myId = "55591743";
 const clientSecret = "683f17caa4792c34914e0ce7af1217469ced16bd";
 const refresh = "a855f824883392d03e6ce3cf6826bf069dd8be93";
-const accessToken = "dd5d8402dab0d18bb320235187b7fe441e840fa8";
-
-//* 1- after user authrizes they get autorization code in url--
-//TODO need to create fucton to get that
-//? Link for users to be able to authorize the API connection-- get a url back which has a access code
-const OAuthLink = `http://www.strava.com/oauth/authorize?client_id=99017&response_type=code&redirect_uri=http://localhost/exchange_token&approval_prompt=force&scope=activity:read_all`;
+const accessToken = "9c32a6526881b90ae6643b349de62339fecd4a1f";
 
 //* OR 1--- need to find out if does redirect properly back to runnenrs after authorze
 //? This redirects to runners with the approval token in the URL-- THIS DOESNT GO IN A FETHC CALL THE USER LITERALLY NEEDS TO BE REACT-LINK SENT TO IT AND THEN CLICK AUTHORIZE WILL THEN SEND THEM TO THE APP WITH THE CODE IN THE URL !!!!
@@ -46,26 +41,16 @@ const athleteActivities = `https://www.strava.com/api/v3/athlete/activities?befo
 //TODO function to call for just the post idea when looking at a post
 const activityID = `https://www.strava.com/api/v3/activities/${myId}?include_all_efforts=true`;
 
-//!!!! put url: string as arguement
-export const stravaAPI = async () => {
-  try {
-    const response = await axios.get(OAuthLinkTest);
-    console.log(response);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
+//TODO could get location from the data from this call????
 //? Function that gets the auth code to then get the access code
 export const stravaAuthToken = async (code: string) => {
-  const [addAuth, { data: userAuthData, loading }] = useMutation(ADD_AUTH_USER);
+  const [addAuth] = useMutation(ADD_AUTH_USER);
   try {
     const { data } = await axios.post("https://www.strava.com/oauth/token", {
       client_id: clientID,
       client_secret: clientSecret,
       code,
     });
-    // console.log(data);
     const athleteInfo = data.athlete;
     const profilePic = athleteInfo.profile_medium;
     const appID = `Strava ${athleteInfo.id.toString()}`;
@@ -76,10 +61,23 @@ export const stravaAuthToken = async (code: string) => {
       },
     });
     const accessToken = data.access_token;
+    getAthleteTotalInfo(accessToken);
     getActivities(accessToken);
     return data;
   } catch (err) {
     console.log(err);
+  }
+};
+
+//? Function that gets the total distance/time for run
+const getAthleteTotalInfo = async (accessToken: string) => {
+  try {
+    const { data } = await axios.get(
+      `https://www.strava.com/api/v3/athletes/${myId}/stats?access_token=${accessToken}`
+    );
+    console.log(data);
+  } catch (error) {
+    console.log(error);
   }
 };
 
