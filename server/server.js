@@ -19,7 +19,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
-//TODO add context back into parameters when created
 const startApolloServer = async (typeDefs, resolvers, context) => {
   const server = new ApolloServer({
     typeDefs,

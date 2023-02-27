@@ -13,6 +13,12 @@ datasource db {
 //!!!
 //!!!
 
+//!!!
+//!! CAN USE THOSE TYPE PROPERTIES SO WE DONT NEED RELATIONS--- GOOD TO USE FOR EACH TYPE OF ACTIVITY ETC BECAUSE NO NEED FOR A RELATION WITH THE ACTIVITIES
+//!!
+//!!
+//!!
+
 // ? MODELS HERE
 //! for the daily activity and the list of activities individually, can use API call as better for all the data
 //* profile pic, name, location, apps[], joined date, activities[], tracked activities(amount for weekly, monthly and yearly overall stats)[], friends[], 
